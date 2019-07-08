@@ -3,7 +3,37 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29025.244
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenCVSharpTest", "OpenCVSharpTest\OpenCVSharpTest.csproj", "{7023AD9B-DD01-453E-9BE5-900A0E040B8B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SentryTest", "SentryTest\SentryTest.csproj", "{331B6880-E8C9-4B8A-BE28-EA96A542E1D9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnitTest", "XUnitTest\XUnitTest.csproj", "{5700E248-E92A-464B-A01F-8217DCB8EF7F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyInjectionLifeTimeTest", "DependencyInjectionLifeTimeTest\DependencyInjectionLifeTimeTest.csproj", "{A45CB21D-7698-41A4-9558-AD65B6260102}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7023AD9B-DD01-453E-9BE5-900A0E040B8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7023AD9B-DD01-453E-9BE5-900A0E040B8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7023AD9B-DD01-453E-9BE5-900A0E040B8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7023AD9B-DD01-453E-9BE5-900A0E040B8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{331B6880-E8C9-4B8A-BE28-EA96A542E1D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{331B6880-E8C9-4B8A-BE28-EA96A542E1D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{331B6880-E8C9-4B8A-BE28-EA96A542E1D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{331B6880-E8C9-4B8A-BE28-EA96A542E1D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5700E248-E92A-464B-A01F-8217DCB8EF7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5700E248-E92A-464B-A01F-8217DCB8EF7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5700E248-E92A-464B-A01F-8217DCB8EF7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5700E248-E92A-464B-A01F-8217DCB8EF7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A45CB21D-7698-41A4-9558-AD65B6260102}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A45CB21D-7698-41A4-9558-AD65B6260102}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A45CB21D-7698-41A4-9558-AD65B6260102}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A45CB21D-7698-41A4-9558-AD65B6260102}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
