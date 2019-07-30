@@ -1,13 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
     <OutputType>Exe</OutputType>
-    <LangVersion>latest</LangVersion>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="IdentityModel" Version="3.10.10" />
-  </ItemGroup>
-
+  </ItemGroup>  
 </Project>
