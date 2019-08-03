@@ -21,7 +21,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HttpClientRequestTest", "Ht
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SerilogTest", "SerilogTest\SerilogTest.csproj", "{A2372507-E5AF-40F9-B154-FA38F5323648}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppMetricsTest", "AppMetricsTest\AppMetricsTest.csproj", "{AAE11666-15DF-4AC8-B5A0-8E7100493B02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppMetricsTest", "AppMetricsTest\AppMetricsTest.csproj", "{AAE11666-15DF-4AC8-B5A0-8E7100493B02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoqTest", "MoqTest\MoqTest.csproj", "{5B62B24F-29A4-462F-B54E-E72C893640E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUnitTest", "NUnitTest\NUnitTest.csproj", "{5008E451-E3E4-4998-A868-A20B021E7BFF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +73,14 @@ Global
 		{AAE11666-15DF-4AC8-B5A0-8E7100493B02}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AAE11666-15DF-4AC8-B5A0-8E7100493B02}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AAE11666-15DF-4AC8-B5A0-8E7100493B02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B62B24F-29A4-462F-B54E-E72C893640E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B62B24F-29A4-462F-B54E-E72C893640E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B62B24F-29A4-462F-B54E-E72C893640E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B62B24F-29A4-462F-B54E-E72C893640E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5008E451-E3E4-4998-A868-A20B021E7BFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5008E451-E3E4-4998-A868-A20B021E7BFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5008E451-E3E4-4998-A868-A20B021E7BFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5008E451-E3E4-4998-A868-A20B021E7BFF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
