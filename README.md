@@ -1,2 +1,1 @@
-# dotnetcoban.com
-All examples for my blog (https://www.dotnetcoban.com)
+This is all examples for my blog (https://www.dotnetcoban.com)

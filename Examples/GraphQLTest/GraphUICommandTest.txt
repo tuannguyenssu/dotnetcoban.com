@@ -1,0 +1,57 @@
+// Kiểm tra query với câu lệnh lấy ra tất cả các orders
+query
+{
+  orders
+  {
+    id
+    name
+    customer
+    {
+      id
+      name
+    }
+    status
+  }
+}
+
+// Kiểm tra mutation với câu lệnh thêm order mới
+
+mutation ($order: OrderCreateInput!)
+{
+  createOrder(order: $order)
+  {
+    id
+    name
+  }
+}
+
+Query Variables
+
+{
+  "order" :
+  {
+    "name" : "Drinks",
+    "customerId" : 1
+  }
+}
+
+// Kiểm tra mutation với câu lệnh cập nhật thông tin order
+
+mutation ($orderId: String!)
+{
+  startOrder(orderId: $orderId)
+  {
+    id
+    name
+    customer
+    {
+      name
+    }
+    status
+  }
+}
+
+Query Variables
+{
+  "orderId" : "faebd971-cba5-4ced-8ad5-cc0b8d4b7827"
+}
