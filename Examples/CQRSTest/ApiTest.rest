@@ -1,0 +1,31 @@
+@url = http://localhost:5000
+@customerTestId = 3
+
+###
+GET {{url}}/api/customers
+
+###
+POST {{url}}/api/customers
+Content-Type: application/json
+
+{
+  "id": "{{customerTestId}}",
+  "name": "Alex",
+  "address": "US"
+}
+
+###
+GET {{url}}/api/customers/{{customerTestId}}
+
+###
+PUT {{url}}/api/customers/{{customerTestId}}
+Content-Type: application/json
+
+{
+  "id": "{{customerTestId}}",
+  "name": "Alex Ferguson",
+  "address": "UK"
+}
+
+###
+DELETE {{url}}/api/customers/{{customerTestId}}
