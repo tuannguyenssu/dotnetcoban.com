@@ -1,0 +1,22 @@
+{
+  "name": "mqtt-broker",
+  "version": "1.0.0",
+  "description": "MQTT Broker using Mosca",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run server",
+    "server": "node mqtt-server.js",
+    "subscriber": "node subscriber.js",
+    "publisher": "node publisher.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mqtt"
+  ],
+  "author": "Tuan Nguyen",
+  "license": "MIT",
+  "dependencies": {
+    "mosca": "^2.8.3",
+    "mqtt": "^3.0.0"
+  }
+}

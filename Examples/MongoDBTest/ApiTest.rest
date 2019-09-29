@@ -1,0 +1,35 @@
+@url = http://localhost:5000
+@customerTestId = 6d8c9f2a29e7f3c7ca6f57a4
+
+###
+GET {{url}}/api/books
+
+###
+POST {{url}}/api/books
+Content-Type: application/json
+
+{
+  "id": "{{customerTestId}}",
+  "name": "Dotnet Co Ban",
+  "price": 1.0,
+  "category": "Computers",
+  "author": "Tuan"
+}
+
+###
+GET {{url}}/api/books/{{customerTestId}}
+
+###
+PUT {{url}}/api/books/{{customerTestId}}
+Content-Type: application/json
+
+{
+  "id": "{{customerTestId}}",
+  "name": "Dotnet Co Ban",
+  "price": 1.0,
+  "category": "Computers",
+  "author": "Tuan Nguyen"
+}
+
+###
+DELETE {{url}}/api/books/{{customerTestId}}
