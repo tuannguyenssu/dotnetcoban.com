@@ -2,12 +2,17 @@
 using IdentityServer4.EntityFramework.DbContexts;
 using IdentityServer4.EntityFramework.Mappers;
 using IdentityServerAspNetIdentity.Models;
-using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Serilog;
+using Serilog.Events;
+using Serilog.Sinks.SystemConsole.Themes;
 using System;
 using System.Linq;
+using System.Net;
 using System.Security.Claims;
 
 namespace IdentityServer
@@ -16,21 +21,52 @@ namespace IdentityServer
     {
         public static void Main(string[] args)
         {
-            var host = CreateWebHostBuilder(args).Build();
-            using (var scope = host.Services.CreateScope())
+            try
             {
-                var services = scope.ServiceProvider;
-                InitializeIdentityServer(services);
+                var host = CreateHostBuilder(args).Build();
+                using (var scope = host.Services.CreateScope())
+                {
+                    var services = scope.ServiceProvider;
+                    InitializeIdentityServer(services);
+                }
+                host.Run();
             }
-            host.Run();
+            catch (Exception ex)
+            {
+                Log.Fatal(ex, "Host terminated unexpectedly");
+            }
+            finally
+            {
+                Log.CloseAndFlush();
+            }
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+        public static IHostBuilder CreateHostBuilder(string[] args)
+        {
+            return Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.ConfigureKestrel((context, options) =>
+                    {
+                        options.Listen(IPAddress.Any, 5000);
+                    });
+                    webBuilder.UseStartup<Startup>();
+                })
+                .UseSerilog((context, configuration) =>
+                {
+                    configuration
+                        .MinimumLevel.Debug()
+                        .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+                        .MinimumLevel.Override("System", LogEventLevel.Warning)
+                        .MinimumLevel.Override("Microsoft.AspNetCore.Authentication", LogEventLevel.Information)
+                        .Enrich.FromLogContext()
+                        .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}", theme: AnsiConsoleTheme.Literate);
+                });
+        }
 
         private static void InitializeIdentityServer(IServiceProvider provider)
         {
+            // Uncomment when connecting to the real database
             //provider.GetRequiredService<ApplicationDbContext>().Database.Migrate();
             //provider.GetRequiredService<PersistedGrantDbContext>().Database.Migrate();
             //provider.GetRequiredService<ConfigurationDbContext>().Database.Migrate();
@@ -64,29 +100,29 @@ namespace IdentityServer
             }
 
             var userManager = provider.GetRequiredService<UserManager<ApplicationUser>>();
-            var bob = userManager.FindByNameAsync("bob").Result;
-            if (bob == null)
+            var user = userManager.FindByNameAsync("tuannguyen").Result;
+            if (user == null)
             {
-                bob = new ApplicationUser
+                user = new ApplicationUser
                 {
-                    UserName = "bob"
+                    UserName = "tuannguyen"
                 };
-                var result = userManager.CreateAsync(bob, "Pass123$").Result;
+                var result = userManager.CreateAsync(user, "P@ssw0rd").Result;
                 if (!result.Succeeded)
                 {
                     throw new Exception(result.Errors.First().Description);
                 }
 
-                bob = userManager.FindByNameAsync("bob").Result;
+                user = userManager.FindByNameAsync("tuannguyen").Result;
 
-                result = userManager.AddClaimsAsync(bob, new Claim[]{
-                new Claim(JwtClaimTypes.Name, "Alice Bob"),
-                new Claim(JwtClaimTypes.GivenName, "Bob"),
-                new Claim(JwtClaimTypes.FamilyName, "Alice"),
-                new Claim(JwtClaimTypes.Email, "bob@blog.com"),
+                result = userManager.AddClaimsAsync(user, new Claim[]{
+                new Claim(JwtClaimTypes.Name, "Tuan Nguyen"),
+                new Claim(JwtClaimTypes.GivenName, "Tuan"),
+                new Claim(JwtClaimTypes.FamilyName, "Nguyen"),
+                new Claim(JwtClaimTypes.Email, "admin@dotnetcoban.com"),
                 new Claim(JwtClaimTypes.EmailVerified, "true", ClaimValueTypes.Boolean),
-                new Claim(JwtClaimTypes.WebSite, "https://example.com"),
-                new Claim(JwtClaimTypes.Address, @"{ 'street_address': 'localhost 10', 'postal_code': 11146, 'country': 'Greece' }",
+                new Claim(JwtClaimTypes.WebSite, "https://dotnetcoban.com"),
+                new Claim(JwtClaimTypes.Address, @"{ 'country': 'Vietnam' }",
                     IdentityServer4.IdentityServerConstants.ClaimValueTypes.Json)
             }).Result;
             }
@@ -94,15 +130,3 @@ namespace IdentityServer
     }
 
 }
-
-//https://blog.georgekosmidis.net/2019/02/08/identityserver4-asp-dotnet-core-api-and-a-client-with-username-password/
-//https://chsakell.com/2019/03/11/asp-net-core-identity-series-oauth-2-0-openid-connect-identityserver/
-
-//DROP DATABASE IdentityServerDb
-//Remove-Migration -Context PersistedGrantDbContext
-//Remove-Migration -Context ConfigurationDbContext
-//Remove-Migration -Context ApplicationDbContext
-
-//Add-Migration InitApplicationDbContext -Context ApplicationDbContext
-//Add-Migration InitPersistedGrantDbContext -Context PersistedGrantDbContext
-//Add-Migration InitConfigurationDbContext -Context ConfigurationDbContext

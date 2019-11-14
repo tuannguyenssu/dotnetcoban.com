@@ -32,7 +32,7 @@ namespace IdentityServer
         // Clients allowed to request for tokens
         public static IEnumerable<Client> GetClients()
         {
-            string resourceUrl = "http://localhost:5001";
+            string swaggerClientUrl = "http://localhost:5001";
             string mvcClientUrl = "http://localhost:5002";
             string spaClientUrl = "http://localhost:5003";
             return new List<Client>
@@ -94,11 +94,40 @@ namespace IdentityServer
                     AllowedGrantTypes = GrantTypes.Implicit,
                     AllowAccessTokensViaBrowser = true,
 
-                    RedirectUris = { $"{resourceUrl}/swagger/oauth2-redirect.html" },
-                    PostLogoutRedirectUris = { $"{resourceUrl}/swagger/" },
+                    RedirectUris = { $"{swaggerClientUrl}/swagger/oauth2-redirect.html" },
+                    PostLogoutRedirectUris = { $"{swaggerClientUrl}/swagger/" },
 
                     AllowedScopes =
                     {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "ResourceApi"
+                    }
+                },
+
+                // Postman
+                new Client
+                {
+                    ClientId = "postman",
+                    ClientName = "Postman Client",
+
+                    AllowedGrantTypes = GrantTypes.Code,
+                    //AllowAccessTokensViaBrowser = true,
+                    //RequireConsent = false,
+                    ClientSecrets = { new Secret("secret".Sha256()) },
+                    AccessTokenLifetime = 3600,
+
+                    RedirectUris = { "https://www.getpostman.com/oauth2/callback" },
+                    FrontChannelLogoutUri = "https://www.getpostman.com/oauth2/callback/",
+                    PostLogoutRedirectUris = { "https://www.getpostman.com/oauth2/callback/" },
+                    AllowedCorsOrigins = { "https://www.getpostman.com" },
+
+                    AllowOfflineAccess = true,
+                    //EnableLocalLogin = true,
+                    AllowedScopes =
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
                         "ResourceApi"
                     }
                 },

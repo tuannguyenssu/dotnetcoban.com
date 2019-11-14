@@ -15,6 +15,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Threading.Tasks;
+using IdentityServer4;
 
 namespace Host.Quickstart.Account
 {
@@ -86,7 +87,14 @@ namespace Host.Quickstart.Account
         public async Task<IActionResult> Callback()
         {
             // read external identity from the temporary cookie
-            var result = await HttpContext.AuthenticateAsync(IdentityConstants.ExternalScheme);
+            //var result = await HttpContext.AuthenticateAsync(IdentityConstants.ExternalScheme);
+
+            AuthenticateResult result = null;
+            if (HttpContext.Request.Cookies.Keys.Contains(IdentityServerConstants.ExternalCookieAuthenticationScheme))
+                result = await HttpContext.AuthenticateAsync(IdentityServerConstants.ExternalCookieAuthenticationScheme);
+            else
+                result = await HttpContext.AuthenticateAsync(IdentityConstants.ExternalScheme);
+
             if (result?.Succeeded != true)
             {
                 throw new Exception("External authentication error");
@@ -121,7 +129,12 @@ namespace Host.Quickstart.Account
             await HttpContext.SignInAsync(user.Id, name, provider, localSignInProps, additionalLocalClaims.ToArray());
 
             // delete temporary cookie used during external authentication
-            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+            //await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+
+            if (HttpContext.Request.Cookies.Keys.Contains(IdentityServerConstants.ExternalCookieAuthenticationScheme))
+                await HttpContext.SignOutAsync(IdentityServerConstants.ExternalCookieAuthenticationScheme);
+            else
+                await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
             // validate return URL and redirect back to authorization endpoint or a local page
             var returnUrl = result.Properties.Items["returnUrl"];
