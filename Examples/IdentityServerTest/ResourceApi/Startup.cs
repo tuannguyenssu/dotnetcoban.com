@@ -9,6 +9,8 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using IdentityModel;
 
 namespace ResourceApi
 {
@@ -38,6 +40,14 @@ namespace ResourceApi
                 options.Authority = identityUrl;
                 options.Audience = "ResourceApi";
                 options.RequireHttpsMetadata = false;
+            });
+
+            services.AddAuthorization(options =>
+            {
+                //options.AddPolicy("ApiReader", policy => policy.RequireClaim("scope", "api.read"));
+                //options.AddPolicy("Consumer", policy => policy.RequireClaim(ClaimTypes.Role, "consumer"));
+                options.AddPolicy("Admin", policy => policy.RequireClaim(JwtClaimTypes.Role, "admin"));
+                options.AddPolicy("Member", policy => policy.RequireClaim(JwtClaimTypes.Role, "member"));
             });
 
             services.AddCors(options =>
@@ -99,12 +109,6 @@ namespace ResourceApi
                 c.OAuthClientId("resourcesswaggerui");
                 c.OAuthAppName("Resource Swagger UI");
             });
-
-            //app.UseSwagger();
-            //app.UseSwaggerUI(c =>
-            //{
-            //    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-            //});
 
             app.UseAuthentication();
 

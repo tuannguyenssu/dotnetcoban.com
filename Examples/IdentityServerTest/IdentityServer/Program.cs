@@ -14,6 +14,7 @@ using System;
 using System.Linq;
 using System.Net;
 using System.Security.Claims;
+using IdentityServer.Customized;
 
 namespace IdentityServer
 {
@@ -99,32 +100,58 @@ namespace IdentityServer
                 context.SaveChanges();
             }
 
-            var userManager = provider.GetRequiredService<UserManager<ApplicationUser>>();
-            var user = userManager.FindByNameAsync("tuannguyen").Result;
+            var userManager = provider.GetRequiredService<UserManager<AppUser>>();
+            var user = userManager.FindByNameAsync("admin").Result;
             if (user == null)
             {
-                user = new ApplicationUser
+                user = new AppUser
                 {
-                    UserName = "tuannguyen"
+                    UserName = "admin",
+                    FullName = "Admin",
+                    Email = "admin@dotnetcoban.com",
+                    Role = "admin"
+                    
                 };
-                var result = userManager.CreateAsync(user, "P@ssw0rd").Result;
+                var result = userManager.CreateAsync(user, "admin").Result;
                 if (!result.Succeeded)
                 {
                     throw new Exception(result.Errors.First().Description);
                 }
 
-                user = userManager.FindByNameAsync("tuannguyen").Result;
+                //user = userManager.FindByNameAsync("admin").Result;
 
-                result = userManager.AddClaimsAsync(user, new Claim[]{
-                new Claim(JwtClaimTypes.Name, "Tuan Nguyen"),
-                new Claim(JwtClaimTypes.GivenName, "Tuan"),
-                new Claim(JwtClaimTypes.FamilyName, "Nguyen"),
-                new Claim(JwtClaimTypes.Email, "admin@dotnetcoban.com"),
-                new Claim(JwtClaimTypes.EmailVerified, "true", ClaimValueTypes.Boolean),
-                new Claim(JwtClaimTypes.WebSite, "https://dotnetcoban.com"),
-                new Claim(JwtClaimTypes.Address, @"{ 'country': 'Vietnam' }",
-                    IdentityServer4.IdentityServerConstants.ClaimValueTypes.Json)
-            }).Result;
+                //result = userManager.AddClaimsAsync(user, new Claim[]{
+                //new Claim(JwtClaimTypes.Role, "admin"),
+                //new Claim(JwtClaimTypes.Name, user.FullName),
+                //new Claim(JwtClaimTypes.Email, user.Email),
+                //new Claim(JwtClaimTypes.EmailVerified, "true", ClaimValueTypes.Boolean),
+                //}).Result;
+            }
+
+            user = userManager.FindByNameAsync("member").Result;
+            if (user == null)
+            {
+                user = new AppUser
+                {
+                    UserName = "member",
+                    FullName = "Member",
+                    Email = "member@dotnetcoban.com",
+                    Role = "member"
+                };
+                var result = userManager.CreateAsync(user, "member").Result;
+                if (!result.Succeeded)
+                {
+                    throw new Exception(result.Errors.First().Description);
+                }
+
+                //user = userManager.FindByNameAsync("member").Result;
+
+                //result = userManager.AddClaimsAsync(user, new Claim[]{
+                //    new Claim(JwtClaimTypes.Role, "member"),
+                //    new Claim(JwtClaimTypes.Name, user.FullName),
+                //    new Claim(JwtClaimTypes.Email, user.Email),
+                //    new Claim(JwtClaimTypes.EmailVerified, "true", ClaimValueTypes.Boolean),
+                //}).Result;
             }
         }
     }

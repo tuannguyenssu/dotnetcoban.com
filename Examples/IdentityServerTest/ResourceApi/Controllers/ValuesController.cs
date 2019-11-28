@@ -12,11 +12,18 @@ namespace ResourceApi.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        // GET api/values
+        //// GET api/values
+        //[HttpGet]
+        //public ActionResult<IEnumerable<string>> Get()
+        //{
+        //    return new string[] { "value1", "value2" };
+        //}
+
+        [Authorize(Policy = "Admin")]
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new JsonResult(User.Claims.Select(c => new { c.Type, c.Value }));
         }
 
         // GET api/values/5

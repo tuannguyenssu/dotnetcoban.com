@@ -7,7 +7,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Reflection;
+using IdentityServer.Customized;
 using IdentityServer4;
+using IdentityServer4.Services;
 
 namespace IdentityServer
 {
@@ -74,7 +76,7 @@ namespace IdentityServer
             });
         }
 
-        // Setup Identity Server with SQL InMemory
+        // Setup Identity Server with SQL
         private void SetupIdentityServerWithSQLServer(IServiceCollection services)
         {
             var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
@@ -85,7 +87,7 @@ namespace IdentityServer
                 options.UseSqlServer(connectionString, sql => sql.MigrationsAssembly(migrationsAssembly));
             });
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<AppUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
@@ -129,7 +131,15 @@ namespace IdentityServer
                 opt.UseInMemoryDatabase(dbName);
             });
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<AppUser, IdentityRole>(options =>
+                {
+                    // Basic built in validations
+                    options.Password.RequireDigit = false;
+                    options.Password.RequireLowercase = false;
+                    options.Password.RequireUppercase = false;
+                    options.Password.RequiredLength = 4;
+                    options.Password.RequireNonAlphanumeric = false;
+                })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
@@ -139,6 +149,7 @@ namespace IdentityServer
                 options.Events.RaiseInformationEvents = true;
                 options.Events.RaiseFailureEvents = true;
                 options.Events.RaiseSuccessEvents = true;
+
             })
             // this adds the config data from DB (clients, resources)
             .AddConfigurationStore(options =>
@@ -147,6 +158,7 @@ namespace IdentityServer
                 {
                     opt.UseInMemoryDatabase("IdentityServerDb");
                 };
+
             })
             // this adds the operational data from DB (codes, tokens, consents)
             .AddOperationalStore(options =>
@@ -159,9 +171,11 @@ namespace IdentityServer
                 // this enables automatic token cleanup. this is optional.
                 options.EnableTokenCleanup = true;
             })
-            .AddAspNetIdentity<ApplicationUser>()
+            .AddAspNetIdentity<AppUser>()
             .AddJwtBearerClientAuthentication()
             .AddDeveloperSigningCredential();
+
+            services.AddTransient<IProfileService, IdentityClaimsProfileService>();
         }
 
         // Quick test IdentityServer (Every data is saved in memory)
