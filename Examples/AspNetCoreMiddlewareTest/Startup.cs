@@ -2,32 +2,23 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AspNetCoreMiddlewareTest.Middleware;
+using AspNetCoreMiddlewareTest.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace EFCoreRelationshipTest
+namespace AspNetCoreMiddlewareTest
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
-        public IConfiguration Configuration { get; }
-
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            var connectionString = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<BlogDbContext>(
-                options => options.UseSqlServer(connectionString));
+            services.AddTransient<IApiLogService, ApiLogService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,14 +29,19 @@ namespace EFCoreRelationshipTest
                 app.UseDeveloperExceptionPage();
             }
 
+            //app.UseMiddleware<SimpleMiddleware>();
+            app.UseMiddleware<ApiResponseRequestLoggingMiddleware>();
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGet("/", async context =>
                 {
-                    await context.Response.WriteAsync("EFCore Relationship Test Project");
+                    await context.Response.WriteAsync("AspNetCore Middleware Test");
                 });
+
+                endpoints.MapControllers();
             });
         }
     }
