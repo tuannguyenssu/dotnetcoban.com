@@ -1,39 +1,39 @@
-using AspNetCoreAuthorizationTest.Middleware;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace AspNetCoreAuthorizationTest
+namespace AspNetCorePermissionAuthorizationTest
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
-        public IConfiguration Configuration { get; }
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
-            services.AddAuthorization(options => 
-            {
-                // Role-based
-                options.AddPolicy(RoleBasedPolicies.IsAdmin, RoleBasedPolicies.IsAdminPolicy());
-                options.AddPolicy(RoleBasedPolicies.IsUser, RoleBasedPolicies.IsUserPolicy());
 
-                // Policy-based
-                options.AddPolicy(PolicyBasedPolicies.IsAdmin, PolicyBasedPolicies.IsAdminPolicy());
-                options.AddPolicy(PolicyBasedPolicies.IsUser, PolicyBasedPolicies.IsUserPolicy());
-            });
+            //services.AddDbContext<AppDbContext>(options => options.UseSqlite("Test.db"));
+            services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase("AppDbTest"));
+
+            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+                {
+                    // Basic built in validations
+                    options.Password.RequireDigit = false;
+                    options.Password.RequireLowercase = false;
+                    options.Password.RequireUppercase = false;
+                    options.Password.RequiredLength = 4;
+                    options.Password.RequireNonAlphanumeric = false;
+                })
+                .AddEntityFrameworkStores<AppDbContext>()
+                .AddDefaultTokenProviders();
+
+            services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
+            services.AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,9 +44,7 @@ namespace AspNetCoreAuthorizationTest
                 app.UseDeveloperExceptionPage();
             }
 
-            //app.UseMiddleware<FakeRoleBasedMiddleware>();
-
-            //app.UseMiddleware<FakePolicyBasedMiddleware>();
+            app.UseMiddleware<FakeUserLoginMiddleware>();
 
             app.UseRouting();
             app.UseAuthentication();
@@ -56,7 +54,7 @@ namespace AspNetCoreAuthorizationTest
             {
                 endpoints.MapGet("/", async context =>
                 {
-                    await context.Response.WriteAsync("AspNetCore Authorization Test");
+                    await context.Response.WriteAsync("AspNetCore Permission Authorization Test");
                 });
 
                 endpoints.MapControllers();
