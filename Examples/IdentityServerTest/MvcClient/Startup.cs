@@ -39,7 +39,10 @@ namespace MvcClient
 
                 options.ClientId = "MvcClient";
                 options.ClientSecret = "secret";
-                options.ResponseType = "code id_token";
+                //options.ResponseType = "code id_token";
+                options.ResponseType = "code";
+                options.ResponseMode = "form_post";
+                options.CallbackPath = "/signin-oidc";
 
                 options.SaveTokens = true;
                 options.GetClaimsFromUserInfoEndpoint = true;

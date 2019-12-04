@@ -62,12 +62,14 @@ namespace IdentityServer
                     },
                     AllowedScopes = { "ResourceApi" }
                 },
-                // MVC client
+                // MVC client support PKCE
                 new Client
                 {
                     ClientId = "MvcClient",
                     ClientName = "MVC Client",
-                    AllowedGrantTypes = GrantTypes.Hybrid,
+                    AllowedGrantTypes = GrantTypes.Code,
+
+                    RequirePkce = true,
 
                     ClientSecrets =
                     {
