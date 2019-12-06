@@ -33,7 +33,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreMiddlewareTest", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreAuthorizationTest", "AspNetCoreAuthorizationTest\AspNetCoreAuthorizationTest.csproj", "{D342C90C-2FBE-427D-A470-98E4A120A8FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCorePermissionAuthorizationTest", "AspNetCorePermissionAuthorizationTest\AspNetCorePermissionAuthorizationTest.csproj", "{79676479-0169-490D-906F-DC5D3034AB9C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCorePermissionAuthorizationTest", "AspNetCorePermissionAuthorizationTest\AspNetCorePermissionAuthorizationTest.csproj", "{79676479-0169-490D-906F-DC5D3034AB9C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

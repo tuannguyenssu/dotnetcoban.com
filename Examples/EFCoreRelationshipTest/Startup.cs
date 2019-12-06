@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EFCoreRelationshipTest.CustomIdentity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,11 +30,32 @@ namespace EFCoreRelationshipTest
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<BlogDbContext>(
                 options => options.UseSqlServer(connectionString));
+
+            services.AddDbContext<CustomIdentityDbContext>(
+                options => options.UseSqlServer(connectionString));
+
+            services.AddIdentity<CustomIdentityUser, CustomIdentityRole>()
+                .AddEntityFrameworkStores<CustomIdentityDbContext>()
+                .AddDefaultTokenProviders();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider provider)
         {
+            var customIdentityDbContext = provider.GetRequiredService<CustomIdentityDbContext>();
+            customIdentityDbContext.Database.Migrate();
+            var userManager = provider.GetRequiredService<UserManager<CustomIdentityUser>>();
+
+            var testUser = new CustomIdentityUser()
+            {
+                UserName = "test",
+                Email = "test@mail.com",
+            };
+
+            var result = userManager.CreateAsync(testUser, "P@ssw0rd").Result;
+
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

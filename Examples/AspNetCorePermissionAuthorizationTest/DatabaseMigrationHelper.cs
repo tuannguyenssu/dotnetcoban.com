@@ -45,6 +45,7 @@ namespace AspNetCorePermissionAuthorizationTest
                 user = new IdentityUser
                 {
                     UserName = "admin",
+                    Email = "admin@dotnetcoban.com"
                 };
                 var result = await userManager.CreateAsync(user, "1234");
                 if (!result.Succeeded)
@@ -62,6 +63,7 @@ namespace AspNetCorePermissionAuthorizationTest
                 user = new IdentityUser
                 {
                     UserName = "user",
+                    Email = "user@dotnetcoban.com"
                 };
                 var result = userManager.CreateAsync(user, "1234").Result;
                 if (!result.Succeeded)

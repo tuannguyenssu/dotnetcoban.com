@@ -7,20 +7,27 @@
   <ItemGroup>
     <Compile Remove="Migrations\20191128071231_InitDb.cs" />
     <Compile Remove="Migrations\20191128071231_InitDb.Designer.cs" />
+    <Compile Remove="Migrations\20191128071519_InitDb.cs" />
+    <Compile Remove="Migrations\20191128071519_InitDb.Designer.cs" />
+    <Compile Remove="Migrations\CustomIdentityDb\20191206024109_InitCustomDbContext.cs" />
+    <Compile Remove="Migrations\CustomIdentityDb\20191206024109_InitCustomDbContext.Designer.cs" />
+    <Compile Remove="Migrations\CustomIdentityDb\20191206025851_InitCustomDbContext.cs" />
+    <Compile Remove="Migrations\CustomIdentityDb\20191206025851_InitCustomDbContext.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.0.1">
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.1">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.0.1" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.0" />
   </ItemGroup>
 
 </Project>

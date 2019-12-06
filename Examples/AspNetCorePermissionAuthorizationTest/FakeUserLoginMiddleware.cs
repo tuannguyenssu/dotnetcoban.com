@@ -44,6 +44,7 @@ namespace AspNetCorePermissionAuthorizationTest
                 throw new Exception("Login failed");
             }
 
+            var token = await userManager.GenerateChangeEmailTokenAsync(loginUser, loginUser.Email);
             await _next(httpContext);
         }
     }
