@@ -35,6 +35,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreAuthorizationTest
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCorePermissionAuthorizationTest", "AspNetCorePermissionAuthorizationTest\AspNetCorePermissionAuthorizationTest.csproj", "{79676479-0169-490D-906F-DC5D3034AB9C}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreSocialLoginTest", "AspNetCoreSocialLoginTest\AspNetCoreSocialLoginTest.csproj", "{37D564C5-86A6-479F-964B-8540A8F5F7A7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +107,10 @@ Global
 		{79676479-0169-490D-906F-DC5D3034AB9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79676479-0169-490D-906F-DC5D3034AB9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79676479-0169-490D-906F-DC5D3034AB9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37D564C5-86A6-479F-964B-8540A8F5F7A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37D564C5-86A6-479F-964B-8540A8F5F7A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37D564C5-86A6-479F-964B-8540A8F5F7A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37D564C5-86A6-479F-964B-8540A8F5F7A7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
