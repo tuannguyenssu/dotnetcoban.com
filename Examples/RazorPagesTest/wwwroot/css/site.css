@@ -1,0 +1,175 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+    justify-content: flex-end;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+}
+
+body {
+    color: #696969;
+}
+
+a:link {
+    color: #3b3420;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #3b3420;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #a52f09;
+    text-decoration: none;
+}
+
+a:active {
+    color: #a52f09;
+}
+
+a.order-button, a.order-button:hover {
+    color: #fdfcf7;
+}
+
+.productInfo, .action {
+    max-width: 200px;
+}
+
+p {
+    font-size: 0.8rem;
+}
+
+#orderProcess {
+    list-style: none;
+    padding: 0;
+    clear: both;
+}
+
+#orderProcess li {
+    color: #696969;
+    display: inline;
+    font-size: 1.2em;
+    margin-right: 15px;
+    padding: 3px 0px 0px 5px;
+}
+
+.step-number {
+    background-color: #edece8;
+    border: 1px solid #e6e4d9;
+    font-size: 1.5em;
+    margin-right: 5px;
+    padding: 3px 10px;
+}
+
+.current .step-number {
+    background-color: #a52f09;
+    border-color: #712107;
+    color: #fefefe;
+}
+
+.orderPageList {
+    padding-inline-start: 20px;
+}
+
+.actions .order-button {
+    margin-left: 20px;
+}
+
+label[for="OrderQuantity"] {
+    padding-left: 15px;
+}
+
+#OrderQuantity {
+    margin: 0 15px;
+    max-width: 100px;
+}
+
+.order-calc {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.input-validation-error, .input-validation-error:focus {
+    background: #ffccba;
+    color: #d63301;
+}
+
+.form-control.input-validation-error:focus {
+    border-color: #d63301;
+    box-shadow: 0 0 0 0.2rem rgba(255, 123, 123, 0.5);
+}
+
+.field-validation-error {
+    color: #be3e16;
+}
+
+.validation-summary-errors {
+    color: #be3e16;
+}

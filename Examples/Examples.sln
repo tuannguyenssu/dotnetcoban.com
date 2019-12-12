@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29025.244
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenCVSharpTest", "OpenCVSharpTest\OpenCVSharpTest.csproj", "{7023AD9B-DD01-453E-9BE5-900A0E040B8B}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SentryTest", "SentryTest\SentryTest.csproj", "{331B6880-E8C9-4B8A-BE28-EA96A542E1D9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnitTest", "XUnitTest\XUnitTest.csproj", "{5700E248-E92A-464B-A01F-8217DCB8EF7F}"
@@ -37,7 +35,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCorePermissionAuthori
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreSocialLoginTest", "AspNetCoreSocialLoginTest\AspNetCoreSocialLoginTest.csproj", "{37D564C5-86A6-479F-964B-8540A8F5F7A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreIdentityUITest", "AspNetCoreIdentityUITest\AspNetCoreIdentityUITest.csproj", "{BDF85A5C-772A-400A-8341-4F3D3ACBA4CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreIdentityUITest", "AspNetCoreIdentityUITest\AspNetCoreIdentityUITest.csproj", "{BDF85A5C-772A-400A-8341-4F3D3ACBA4CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorPagesTest", "RazorPagesTest\RazorPagesTest.csproj", "{C8AEAB75-7FB5-47AB-90CA-7585738BF85E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,10 +45,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7023AD9B-DD01-453E-9BE5-900A0E040B8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7023AD9B-DD01-453E-9BE5-900A0E040B8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7023AD9B-DD01-453E-9BE5-900A0E040B8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7023AD9B-DD01-453E-9BE5-900A0E040B8B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{331B6880-E8C9-4B8A-BE28-EA96A542E1D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{331B6880-E8C9-4B8A-BE28-EA96A542E1D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{331B6880-E8C9-4B8A-BE28-EA96A542E1D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -117,6 +113,10 @@ Global
 		{BDF85A5C-772A-400A-8341-4F3D3ACBA4CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDF85A5C-772A-400A-8341-4F3D3ACBA4CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDF85A5C-772A-400A-8341-4F3D3ACBA4CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8AEAB75-7FB5-47AB-90CA-7585738BF85E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8AEAB75-7FB5-47AB-90CA-7585738BF85E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8AEAB75-7FB5-47AB-90CA-7585738BF85E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8AEAB75-7FB5-47AB-90CA-7585738BF85E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
