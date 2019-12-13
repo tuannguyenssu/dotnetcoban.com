@@ -1,14 +1,15 @@
-using GraphQL;
 using GraphQL.Types;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace GraphQLTest.GraphQL
 {
     public class GraphTestSchema : Schema
     {
-        public GraphTestSchema(IDependencyResolver resolver) : base(resolver)
+        public GraphTestSchema(IServiceProvider provider) : base(provider)
         {
-            Query = resolver.Resolve<GraphTestQuery>();
-            Mutation = resolver.Resolve<GraphTestMutation>();
+            Query = provider.GetRequiredService<GraphTestQuery>();
+            Mutation = provider.GetRequiredService<GraphTestMutation>();
         }
     }
 }

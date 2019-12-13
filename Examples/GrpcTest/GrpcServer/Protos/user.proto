@@ -3,7 +3,7 @@
 package GrpcUserEndpoint;
 
 // Định nghĩa các services
-service GrpcUser {
+service UserService {
   // Lấy user theo Id
   rpc GetUser (GetUserRequest) returns (GetUserResponse) {}
 }

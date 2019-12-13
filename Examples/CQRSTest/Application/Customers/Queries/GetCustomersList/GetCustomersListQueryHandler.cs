@@ -1,9 +1,7 @@
-using System.Collections.Generic;
+using MediatR;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using CQRSTest.Domain;
-using MediatR;
 
 namespace CQRSTest.Application.Customers.Queries.GetCustomersList
 {

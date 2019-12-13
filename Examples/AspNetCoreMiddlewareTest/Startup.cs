@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AspNetCoreMiddlewareTest.Middleware;
 using AspNetCoreMiddlewareTest.Services;
 using Microsoft.AspNetCore.Builder;
@@ -40,8 +36,6 @@ namespace AspNetCoreMiddlewareTest
                 {
                     await context.Response.WriteAsync("AspNetCore Middleware Test");
                 });
-
-                endpoints.MapControllers();
             });
         }
     }

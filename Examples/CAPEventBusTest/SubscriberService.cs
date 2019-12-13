@@ -1,8 +1,6 @@
 ﻿using DotNetCore.CAP;
+using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CAPEventBusTest
 {
@@ -13,10 +11,17 @@ namespace CAPEventBusTest
 
     public class SubscriberService : ISubscriberService, ICapSubscribe
     {
+        private readonly ILogger<SubscriberService> _logger;
+
+        public SubscriberService(ILogger<SubscriberService> logger)
+        {
+            _logger = logger;
+        }
+
         [CapSubscribe("test.show.time")]
         public void CheckReceivedMessage(DateTime datetime)
         {
-            Console.WriteLine("message time is:" + datetime);
+            _logger.LogInformation("message time is:" + datetime);
         }
     }
 }

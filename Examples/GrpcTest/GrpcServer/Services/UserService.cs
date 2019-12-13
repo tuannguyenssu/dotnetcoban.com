@@ -1,13 +1,13 @@
+using System;
+using System.Threading.Tasks;
 using Grpc.Core;
 using GrpcUserEndpoint;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Threading.Tasks;
-using static GrpcUserEndpoint.GrpcUser;
+using static GrpcUserEndpoint.UserService;
 
-namespace GrpcServer
+namespace GrpcServer.Services
 {
-    public class UserService : GrpcUserBase
+    public class UserService : UserServiceBase
     {
         private readonly ILogger<UserService> _logger;
         public UserService(ILogger<UserService> logger)

@@ -1,8 +1,22 @@
+using System.Collections.Generic;
 using AutoMapper;
 using AutoMapperTest.Models;
 
 namespace AutoMapperTest.Mappings
 {
+    public class AppMapperConfiguration
+    {
+        public static List<Profile> RegisterMappings()
+        {
+            var cfg = new List<Profile>
+            {
+                // Thêm các MappingProfile khác vào đây
+                new MappingProfile()
+            };
+
+            return cfg;
+        }
+    }
     public class MappingProfile : Profile {
     public MappingProfile() {
         // Đưa hết các cấu hình bạn muốn map giữa các object vào đây

@@ -1,11 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using GraphQLTest.Models;
-using GraphQL.Client;
+using GraphQL.Client.Http;
 using GraphQL.Common.Request;
+using GraphQLTest.Models;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace GraphQLTest.Controllers
 {
@@ -16,7 +14,7 @@ namespace GraphQLTest.Controllers
         public async Task<List<Customer>> Get()
         {
             string graphServerUrl = "http://localhost:5000/graphql";
-            using(GraphQLClient client = new GraphQLClient(graphServerUrl))
+            using(var client = new GraphQLHttpClient(graphServerUrl))
             {
                 var query = new GraphQLRequest
                 {
@@ -27,7 +25,8 @@ namespace GraphQLTest.Controllers
                         }
                         }"
                 };
-                var response = await client.PostAsync(query);
+                
+                var response = await client.SendQueryAsync(query);
                 return response.GetDataFieldAs<List<Customer>>("customers");
             }
         }

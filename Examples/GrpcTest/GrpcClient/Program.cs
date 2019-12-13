@@ -1,11 +1,11 @@
 ﻿using Grpc.Core;
 using Grpc.Net.Client;
-using GrpcUserEndpoint;
 using System;
-using System.Net.Http;
 using System.Threading.Tasks;
+using GrpcUserEndpoint;
+using static GrpcUserEndpoint.UserService;
 
-namespace GrpcClientTest
+namespace GrpcClient
 {
     class Program
     {
@@ -13,11 +13,9 @@ namespace GrpcClientTest
         {
             Console.WriteLine("Starting GRPC Client...");
             Console.WriteLine();
-            var httpClient = new HttpClient();
-            string grpcServerUrl = "https://localhost:5001";
-            httpClient.BaseAddress = new Uri(grpcServerUrl);
-            var client = GrpcClient.Create<GrpcUser.GrpcUserClient>(httpClient);
 
+            var channel = GrpcChannel.ForAddress("https://localhost:5001");
+            var client = new UserServiceClient(channel);
             try
             {
                 var response = await client.GetUserAsync(new GetUserRequest { Id = "123" });

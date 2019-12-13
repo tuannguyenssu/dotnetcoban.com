@@ -1,15 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using AutoMapper;
+using AutoMapper.Configuration;
+using AutoMapperTest.Mappings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
-using AutoMapper;
-using AutoMapperTest.Mappings;
+using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 
 namespace AutoMapperTest
 {
@@ -25,18 +22,13 @@ namespace AutoMapperTest
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Cấu hình AutoMapper - Cách 1
-            var mappingConfig = new MapperConfiguration(mc =>
-            {
-                mc.AddProfile(new MappingProfile());
-            });
-            mappingConfig.AssertConfigurationIsValid();
-            IMapper mapper = mappingConfig.CreateMapper();
-            services.AddSingleton(mapper);
-            
-            // Cấu hình AutoMapper - Cách 2 cũ hơn
-            // Mapper.Initialize(cfg => cfg.AddProfile<MappingProfile>());
-            // services.AddAutoMapper();
+            // Cấu hình AutoMapper
+            var configurationExpression = new MapperConfigurationExpression();
+            AppMapperConfiguration.RegisterMappings().ForEach(p => configurationExpression.AddProfile(p));
+            var automapperConfig = new MapperConfiguration(configurationExpression);
+            automapperConfig.AssertConfigurationIsValid();
+            services.TryAddSingleton(automapperConfig.CreateMapper());
+
             services.AddControllersWithViews();
             services.AddRazorPages();
         }

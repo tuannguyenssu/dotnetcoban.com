@@ -1,5 +1,4 @@
-﻿using System;
-using OpenCvSharp;
+﻿using OpenCvSharp;
 namespace OpenCVSharpTest
 {
     class Program
