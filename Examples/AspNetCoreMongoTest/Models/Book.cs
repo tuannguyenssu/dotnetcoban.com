@@ -1,7 +1,7 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace MongoDBTest.Models
+namespace AspNetCoreMongoTest.Models
 {
     public class Book
     {

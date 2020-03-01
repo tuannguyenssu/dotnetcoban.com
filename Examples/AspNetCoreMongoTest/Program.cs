@@ -1,8 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
-using System.Net;
 
-namespace GrpcServer
+namespace AspNetCoreMongoTest
 {
     public class Program
     {
@@ -15,7 +14,6 @@ namespace GrpcServer
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.ConfigureKestrel(options => { options.Listen(IPAddress.Any, 5001); });
                     webBuilder.UseStartup<Startup>();
                 });
     }
