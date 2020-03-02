@@ -1,22 +1,23 @@
-using System.Collections.Generic;
+using System;
+using CQRSTest.Domain.Customers;
+using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
-using CQRSTest.Application.Exceptions;
-using CQRSTest.Domain;
-using MediatR;
 
 namespace CQRSTest.Application.Customers.Queries.GetCustomerDetail
 {
     public class GetCustomerDetailQueryHandler : IRequestHandler<GetCustomerDetailQuery, CustomerDetailViewModel>
     {
+        private readonly ICustomerRepository _repository;
+
+        public GetCustomerDetailQueryHandler(ICustomerRepository repository)
+        {
+            _repository = repository;
+        }
+
         public async Task<CustomerDetailViewModel> Handle(GetCustomerDetailQuery request, CancellationToken cancellationToken)
         {
-            // Ở đây chỉ giả lập dữ liệu. Trên thực tế phải tương tác với DB thật
-            var model = FakeDbContext.Customers.Find(c => c.Id == request.Id);
-            if(model == null)
-            {
-                throw new NotFoundException(nameof(Customer), request.Id);
-            }
+            var model = _repository.GetById(Guid.Parse(request.Id));
             var vm = new CustomerDetailViewModel
             {
                 Name = model.Name,

@@ -6,7 +6,7 @@ namespace CQRSTest.Application.Customers.Queries.GetCustomerDetail
     {
         public GetCustomerDetailQueryValidator()
         {
-            RuleFor(v => v.Id).GreaterThan(0);
+            RuleFor(v => v.Id).NotEmpty();
         }
     }
 }

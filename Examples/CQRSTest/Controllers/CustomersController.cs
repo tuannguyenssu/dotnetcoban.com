@@ -11,7 +11,7 @@ namespace CQRSTest.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CustomersController : Controller
+    public class CustomersController : ControllerBase
     {
         private readonly IMediator _mediator;
 
@@ -29,7 +29,7 @@ namespace CQRSTest.Controllers
 
         // GET api/customers/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        public async Task<IActionResult> Get(string id)
         {
             return Ok(await _mediator.Send(new GetCustomerDetailQuery { Id = id }));
         }
@@ -43,7 +43,7 @@ namespace CQRSTest.Controllers
 
         // PUT api/customers/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody]UpdateCustomerCommand command)
+        public async Task<IActionResult> Update(string id, [FromBody]UpdateCustomerCommand command)
         {
             if (command == null || command.Id != id)
             {
@@ -55,11 +55,9 @@ namespace CQRSTest.Controllers
 
         // DELETE api/customers/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(string id)
         {
-            await _mediator.Send(new DeleteCustomerCommand { Id = id });
-
-            return NoContent();
+            return Ok(await _mediator.Send(new DeleteCustomerCommand { Id = id }));
         }        
     }
 }

@@ -1,22 +1,26 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using CQRSTest.Domain;
+﻿using CQRSTest.Domain.Customers;
 using MediatR;
+using System.Threading;
+using System.Threading.Tasks;
+using CQRSTest.Domain.Customers.Events;
 
 namespace CQRSTest.Application.Customers.Commands.CreateCustomer
 {
-    public class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerCommand, Unit>
+    public class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerCommand, bool>
     {
-        public async Task<Unit> Handle(CreateCustomerCommand request, CancellationToken cancellationToken)
+        private readonly ICustomerRepository _repository;
+
+        public CreateCustomerCommandHandler(ICustomerRepository repository)
         {
-            FakeDbContext.Customers.Add(new Customer
-            {
-                Id = request.Id,
-                Name = request.Name,
-                Address = request.Address
-            });
-            
-            return await Task.FromResult(Unit.Value);
+            _repository = repository;
+        }
+
+        public Task<bool> Handle(CreateCustomerCommand request, CancellationToken cancellationToken)
+        {
+            var customer = new Customer();
+            _repository.Add(customer.Create(request));
+            _repository.Save(customer, customer.Version);
+            return Task.FromResult(true);
         }
     }
 }

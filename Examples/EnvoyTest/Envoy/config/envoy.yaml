@@ -1,0 +1,42 @@
+admin:
+  access_log_path: /tmp/admin_access.log
+  address:
+    socket_address:
+      address: 0.0.0.0
+      port_value: 9901
+static_resources:
+  listeners:
+  - address:
+      socket_address:
+        address: 0.0.0.0
+        port_value: 80
+    filter_chains:
+    - filters:
+      - name: envoy.http_connection_manager
+        config:
+          stat_prefix: ingress_http
+          codec_type: auto
+          route_config:
+            name: backend_route
+            virtual_hosts:
+            - name: backend_service
+              domains: ["*"]
+              routes:
+              - name: "google"
+                match:
+                  prefix: "/"
+                route:
+                  auto_host_rewrite: true
+                  cluster: service_google
+          http_filters:
+          - name: envoy.router
+  clusters:
+  - name: service_google
+    connect_timeout: 0.25s
+    # type: logical_dns
+    type: strict_dns
+    lb_policy: round_robin
+    hosts:
+    - socket_address:
+        address: 14.232.243.194
+        port_value: 38000

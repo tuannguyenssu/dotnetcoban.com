@@ -2,8 +2,8 @@
 
 namespace CQRSTest.Application.Customers.Commands.DeleteCustomer
 {
-    public class DeleteCustomerCommand : IRequest
+    public class DeleteCustomerCommand : IRequest<bool>
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
     }
 }

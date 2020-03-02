@@ -1,24 +1,26 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using CQRSTest.Application.Exceptions;
-using CQRSTest.Domain;
+﻿using System;
+using CQRSTest.Domain.Customers;
 using MediatR;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace CQRSTest.Application.Customers.Commands.UpdateCustomer
 {
-    public class UpdateCustomerCommandHandler : IRequestHandler<UpdateCustomerCommand, Unit>
+    public class UpdateCustomerCommandHandler : IRequestHandler<UpdateCustomerCommand, bool>
     {
-        public async Task<Unit> Handle(UpdateCustomerCommand request, CancellationToken cancellationToken)
+        private readonly ICustomerRepository _repository;
+
+        public UpdateCustomerCommandHandler(ICustomerRepository repository)
         {
-            var index = FakeDbContext.Customers.FindIndex(c => c.Id == request.Id);
-            if(index < 0)
-            {
-                throw new NotFoundException(nameof(Customer), request.Id);
-            }
-            FakeDbContext.Customers[index].Name = request.Name;
-            FakeDbContext.Customers[index].Address = request.Address;
-            
-            return await Task.FromResult(Unit.Value);
+            _repository = repository;
+        }
+
+        public Task<bool> Handle(UpdateCustomerCommand request, CancellationToken cancellationToken)
+        {
+            var customer = _repository.GetById(Guid.Parse(request.Id));
+            if (customer == null) return Task.FromResult(false);
+            _repository.Update(customer.Update(request));
+            return Task.FromResult(true);
         }
     }
 }

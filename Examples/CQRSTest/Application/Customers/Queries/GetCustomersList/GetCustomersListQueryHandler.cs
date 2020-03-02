@@ -1,3 +1,4 @@
+using CQRSTest.Domain.Customers;
 using MediatR;
 using System.Linq;
 using System.Threading;
@@ -7,9 +8,16 @@ namespace CQRSTest.Application.Customers.Queries.GetCustomersList
 {
     public class GetCustomersListQueryHandler : IRequestHandler<GetCustomersListQuery, CustomersListViewModel>
     {
+        private readonly ICustomerRepository _repository;
+
+        public GetCustomersListQueryHandler(ICustomerRepository repository)
+        {
+            _repository = repository;
+        }
+
         public async Task<CustomersListViewModel> Handle(GetCustomersListQuery request, CancellationToken cancellationToken)
         {
-            var models = FakeDbContext.Customers;
+            var models = _repository.GetAll();
 
             var vm = new CustomersListViewModel()
             {

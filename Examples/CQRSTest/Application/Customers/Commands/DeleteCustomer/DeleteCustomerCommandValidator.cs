@@ -6,7 +6,7 @@ namespace CQRSTest.Application.Customers.Commands.DeleteCustomer
     {
         public DeleteCustomerCommandValidator()
         {
-            RuleFor(v => v.Id).NotEmpty().GreaterThanOrEqualTo(0);
+            RuleFor(v => v.Id).NotEmpty();
         }
     }
 }

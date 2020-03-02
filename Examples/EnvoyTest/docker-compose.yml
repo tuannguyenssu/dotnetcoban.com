@@ -1,0 +1,21 @@
+version: "3.7"
+
+networks:
+ envoy:
+  driver: bridge
+  name: envoy-test-network
+
+services:
+  envoy:
+    container_name: envoy-test
+    # image: envoyproxy/envoy:v1.11.1
+    image: envoyproxy/envoy-dev
+    restart: always
+    networks:
+      - envoy
+    volumes:
+      - ./Envoy/config:/etc/envoy
+      - ./Envoy/log/admin_access.log:/tmp/admin_access.log
+    ports:
+      - 9901:9901
+      - 15000:80

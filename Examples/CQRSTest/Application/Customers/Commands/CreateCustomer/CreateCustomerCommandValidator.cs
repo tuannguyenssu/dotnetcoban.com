@@ -6,7 +6,7 @@ namespace CQRSTest.Application.Customers.Commands.CreateCustomer
     {
         public CreateCustomerCommandValidator()
         {
-            RuleFor(x => x.Id).NotEmpty().GreaterThanOrEqualTo(0);
+            RuleFor(x => x.Id).NotEmpty();
         }
     }
 }

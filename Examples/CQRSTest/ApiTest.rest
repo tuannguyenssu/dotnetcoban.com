@@ -1,6 +1,5 @@
 @url = http://localhost:5000
-@customerTestId = 3
-
+@customerTestId = e6d9df37-48ce-4d6b-bec7-a64894d87419
 ###
 GET {{url}}/api/customers
 
