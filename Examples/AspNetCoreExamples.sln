@@ -55,6 +55,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreCloudEventsTest",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreEfCoreProviderTest", "AspNetCoreEfCoreProviderTest\AspNetCoreEfCoreProviderTest.csproj", "{AEA4DC7C-1C66-491D-A007-C68FC3ED5E0B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreNatsTest", "AspNetCoreNatsTest\AspNetCoreNatsTest.csproj", "{D5F20555-955E-4E71-AFC8-527038E83FA5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -165,6 +167,10 @@ Global
 		{AEA4DC7C-1C66-491D-A007-C68FC3ED5E0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AEA4DC7C-1C66-491D-A007-C68FC3ED5E0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AEA4DC7C-1C66-491D-A007-C68FC3ED5E0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5F20555-955E-4E71-AFC8-527038E83FA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5F20555-955E-4E71-AFC8-527038E83FA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5F20555-955E-4E71-AFC8-527038E83FA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5F20555-955E-4E71-AFC8-527038E83FA5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

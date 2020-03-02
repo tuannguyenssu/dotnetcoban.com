@@ -1,0 +1,47 @@
+version: "3.7"
+
+networks:
+ docker-net:
+  driver: bridge
+  name: docker-net
+
+services:
+  prometheus-test:
+    container_name: prometheus-test
+    restart: always
+    build:
+      context: .
+      dockerfile: AspNetCorePrometheusTest/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    networks:
+      - docker-net
+    ports:
+      - 5000:5000
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus
+    restart: always
+    networks:
+        - docker-net
+    volumes:
+      - ./Compose/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+
+  grafana:
+    container_name: grafana
+    image: grafana/grafana
+    restart: always
+    networks:
+        - docker-net
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - ./Compose/grafana/provisioning/:/etc/grafana/provisioning
+      - ./Compose/grafana/dashboards/:/var/lib/grafana/dashboards
+      - ./Compose/grafana/config.ini:/etc/grafana/config.ini
+    depends_on:
+      - prometheus
+    ports:
+      - "3000:3000"
