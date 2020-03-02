@@ -1,9 +1,9 @@
-using MongoDBTest.Models;
-using MongoDBTest.Services;
-using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using AspNetCoreMongoTest.Models;
+using AspNetCoreMongoTest.Services;
+using Microsoft.AspNetCore.Mvc;
 
-namespace MongoDBTest.Controllers
+namespace AspNetCoreMongoTest.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

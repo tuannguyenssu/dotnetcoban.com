@@ -1,11 +1,15 @@
-﻿using GrpcServer.Services;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using CloudNative.CloudEvents;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace GrpcServer
+namespace AspNetCoreCloudEventsTest
 {
     public class Startup
     {
@@ -13,7 +17,10 @@ namespace GrpcServer
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddGrpc();
+            services.AddControllers(opts =>
+            {
+                opts.InputFormatters.Insert(0, new CloudEventJsonInputFormatter());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -25,24 +32,15 @@ namespace GrpcServer
             }
 
             app.UseRouting();
-            app.UseGrpcWeb();
 
             app.UseEndpoints(endpoints =>
             {
-                // Map các services ở đây 
-                endpoints.MapGrpcService<UserService>().EnableGrpcWeb();
-
-                endpoints.MapGet("/protos/user", async context =>
-                {
-                    await context.Response.SendFileAsync("Protos/user.proto", context.RequestAborted);
-                });
-
                 endpoints.MapGet("/", async context =>
                 {
-                    await context.Response.WriteAsync("Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
+                    await context.Response.WriteAsync("AspNetCore CloudEvents Test");
                 });
 
-
+                endpoints.MapControllers();
             });
         }
     }

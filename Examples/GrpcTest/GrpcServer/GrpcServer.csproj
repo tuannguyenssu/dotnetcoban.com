@@ -9,11 +9,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Protos\user.proto">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <Protobuf Include="Protos\user.proto" GrpcServices="Server" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Grpc.AspNetCore" Version="2.25.0" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.27.0" />
+	  <PackageReference Include="Grpc.AspNetCore.Web" Version="2.27.0-pre1" />
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,9 @@
 ﻿using Grpc.Core;
 using Grpc.Net.Client;
 using System;
+using System.Net.Http;
 using System.Threading.Tasks;
+using Grpc.Net.Client.Web;
 using GrpcUserEndpoint;
 using static GrpcUserEndpoint.UserService;
 
@@ -14,7 +16,12 @@ namespace GrpcClient
             Console.WriteLine("Starting GRPC Client...");
             Console.WriteLine();
 
-            var channel = GrpcChannel.ForAddress("https://localhost:5001");
+            var handler = new GrpcWebHandler(GrpcWebMode.GrpcWebText, new HttpClientHandler());
+            var channel = GrpcChannel.ForAddress("http://localhost:5001", new GrpcChannelOptions
+            {
+                HttpClient = new HttpClient(handler)
+            });
+
             var client = new UserServiceClient(channel);
             try
             {
@@ -25,10 +32,7 @@ namespace GrpcClient
             }
             catch (RpcException ex)
             {
-                if (ex.StatusCode == StatusCode.NotFound)
-                {
-                    Console.WriteLine(ex.Status.Detail);
-                }
+                Console.WriteLine(ex.Status.Detail);
             }
 
             Console.WriteLine();

@@ -1,9 +1,15 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using System.Net;
+using Microsoft.Extensions.Logging;
 
-namespace GrpcServer
+namespace AspNetCoreCloudEventsTest
 {
+    //https://github.com/cloudevents/sdk-csharp/tree/master/samples/CloudNative.CloudEvents.AspNetCoreSample
     public class Program
     {
         public static void Main(string[] args)
@@ -15,7 +21,6 @@ namespace GrpcServer
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.ConfigureKestrel(options => { options.Listen(IPAddress.Any, 5001); });
                     webBuilder.UseStartup<Startup>();
                 });
     }

@@ -1,8 +1,13 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using System.Net;
+using Microsoft.Extensions.Logging;
 
-namespace GrpcServer
+namespace AspNetCoreCassandraTest
 {
     public class Program
     {
@@ -15,7 +20,6 @@ namespace GrpcServer
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.ConfigureKestrel(options => { options.Listen(IPAddress.Any, 5001); });
                     webBuilder.UseStartup<Startup>();
                 });
     }
