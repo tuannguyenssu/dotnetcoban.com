@@ -1,0 +1,48 @@
+---
+
+# apiVersion: v1
+# kind: PersistentVolume
+# metadata:
+#   name: dncb-pv-httpd
+# spec:
+#   capacity:
+#     storage: 1Gi
+#   # volumeMode: Filesystem
+#   accessModes:
+#   - ReadWriteMany
+#   persistentVolumeReclaimPolicy: Delete
+#   # Local Storage
+#   # storageClassName: local-storage
+#   # local:
+#     # path: /root/kubernetes/data
+
+#   # HostPath
+#   # storageClassName: hostpath
+#   # hostPath:
+#   #   # path: /D/KUBERNETES/Httpd
+#   #   path: /host_mnt/c/Users/tuannv/.docker/Volumes/httpd
+
+#   nfs:
+#     storageClassName: nfs-storage
+#     path: "/root/kubernetes/data/"
+#     server: "192.168.1.80"
+
+
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+ name: dncb-pv-aspnetcore
+ labels:
+  type: local
+spec:
+ storageClassName: manual
+ volumeMode: Filesystem
+ capacity:
+  storage: 2Gi
+ accessModes:
+  - ReadWriteMany
+#  nfs:
+#   path: "/root/kubernetes/data/"
+#   server: "192.168.1.80"
+ hostPath:
+  path: "/d/KUBERNETES/AspNetCore"
