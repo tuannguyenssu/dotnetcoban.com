@@ -32,9 +32,12 @@ spec:
           - name : ASPNETCORE_ENVIRONMENT
             value: Kubernetes
         resources:
+          requests:
+            memory: "64Mi" # 64MB
+            cpu: "250m" # 1/4 CPU
           limits:
-            memory: "100M"
-            cpu: "100m"
+            memory: "128Mi"
+            cpu: "500m" # 1/2 CPU
         ports:
           - containerPort: 80
         volumeMounts:

@@ -1,0 +1,44 @@
+# https://www.magalix.com/blog/kubernetes-statefulsets-101-state-of-the-pods
+# Stateful applications include MySQL clusters, Redis, Kafka, MongoDB, ...
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: dncb-statefulset-mongodb
+spec:
+ replicas: 1
+ serviceName: mongodb-svc
+ selector:
+  matchLabels:
+   app: mongodb
+ template:
+  metadata:
+    labels:
+      app: mongodb
+  spec:
+    terminationGracePeriodSeconds: 30
+    containers:
+    - name: mongodb
+      image: mongo
+      env:
+      - name: MONGO_INITDB_ROOT_USERNAME
+        value: root
+      - name: MONGO_INITDB_ROOT_PASSWORD
+        value: 123@123a
+      ports:
+      - containerPort: 27017
+        name: tcp
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb-svc
+  labels:
+    app: mongodb
+spec:
+  selector:
+    app: mongodb
+  ports:
+  - port: 27017
+  clusterIP: None
