@@ -24,7 +24,8 @@ namespace AspNetCoreMicroservicesTest
         {
             services
                 .AddCorrelationId()
-                .AddCustomOpenTelemetry();
+                .AddCustomOpenTelemetry()
+                .AddCustomMassTransit();
 
         }
 
@@ -36,13 +37,15 @@ namespace AspNetCoreMicroservicesTest
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCorrelationId();
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGet("/", async context =>
                 {
-                    await context.Response.WriteAsync("Hello World!");
+                    await context.Response.WriteAsync("AspNetCore Microservices Test");
                 });
             });
         }
@@ -50,37 +53,5 @@ namespace AspNetCoreMicroservicesTest
 
     }
 
-    static class CustomExtensionsMethods
-    {
-        public static IServiceCollection AddMassTransit(this IServiceCollection services, IConfiguration configuration)
-        {
-            services.AddMassTransit();
-            //services.AddMassTransit((provider) =>
-            //{
-            //    var rabbitMqOption = configuration.GetOptions<RabbitMqOptions>("rabbitMQ");
 
-            //    return Bus.Factory.CreateUsingRabbitMq(cfg =>
-            //    {
-            //        var host = cfg.Host(new Uri(rabbitMqOption.Url), "/", hc =>
-            //        {
-            //            hc.Username(rabbitMqOption.UserName);
-            //            hc.Password(rabbitMqOption.Password);
-            //        });
-
-            //        cfg.ReceiveEndpoint("contact", x =>
-            //        {
-            //            x.ConfigureConsumer<ContactCreatedConsumer>(provider);
-            //        });
-
-            //        cfg.PropagateOpenTracingContext();
-            //        cfg.PropagateCorrelationIdContext();
-            //    });
-            //}, (cfg) =>
-            //{
-            //    cfg.AddConsumersFromNamespaceContaining<ConsumerAnchor>();
-            //});
-
-            return services;
-        }
-    }
 }

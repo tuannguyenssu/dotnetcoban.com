@@ -1,0 +1,25 @@
+version: '3.7'
+
+services:
+  seq:
+    image: datalust/seq
+    container_name: seq
+    environment:
+      - ACCEPT_EULA=Y
+    ports:
+      - "5341:5341"
+      - 5340:80      
+
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    ports:
+      - 9411:9411    
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq    
+    hostname: rabbitmq
+    ports:
+      - "15672:15672"
+      - "5672:5672"    
