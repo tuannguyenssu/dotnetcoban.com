@@ -1,0 +1,22 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: dncb-cronjob-busybox
+spec:
+ # https://en.wikipedia.org/wiki/Cron
+  schedule: "*/1 * * * *" # 1 minutes
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: busybox-cronjob
+            image: busybox
+            imagePullPolicy: IfNotPresent
+            command: ["/bin/sh","-c"]
+            args: ["echo", "Running a job"]
+
+          restartPolicy: OnFailure
+          terminationGracePeriodSeconds: 0
+
+  concurrencyPolicy: Allow

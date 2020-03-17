@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aspnetcorekubernetestest
+  labels:
+    app: aspnetcorekubernetestest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aspnetcorekubernetestest
+  template:
+    metadata:
+      labels:
+        app: aspnetcorekubernetestest
+    spec:
+      volumes:
+        - name: aspnetcoreapp
+          persistentVolumeClaim:
+            # Tên volume claim ở đây
+            claimName: dncb-pv-claim-aspnetcore
+        - name: aspnetcore-configmap
+          configMap:
+            name: aspnetcore-configmap
+        - name: aspnetcore-secret
+          secret:
+            secretName: aspnetcore-secret
+      containers:
+      - name: app
+        image: tuannguyenssu/aspnetcorekubernetestest:latest
+        env:
+          - name : ASPNETCORE_ENVIRONMENT
+            value: Kubernetes
+        resources:
+          requests:
+            memory: "64Mi" # 64MB
+            cpu: "250m" # 1/4 CPU
+          limits:
+            memory: "128Mi"
+            cpu: "500m" # 1/2 CPU
+        ports:
+          - containerPort: 80
+        volumeMounts:
+          - name: aspnetcoreapp
+            mountPath: /app/wwwroot
+
+          # - name: aspnetcore-configmap
+          #   mountPath: /app/appsettings.Kubernetes.json
+          #   subPath: appsettings.Kubernetes.json
+          - name: aspnetcore-secret
+            mountPath: /app/appsettings.Kubernetes.json
+            subPath: appsettings.Kubernetes.json
+            readOnly: true

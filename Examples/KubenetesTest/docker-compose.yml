@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  aspnetcorekubernetestest:
+    image: tuannguyenssu/aspnetcorekubernetestest:latest
+    build:
+      context: .
+      dockerfile: AspNetCoreKubernetesTest/Dockerfile

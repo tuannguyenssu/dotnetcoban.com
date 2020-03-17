@@ -1,0 +1,25 @@
+# https://www.magalix.com/blog/kubernetes-jobs-101
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+ name: dncb-job-busybox
+spec:
+ completions: 5 # Chạy 5 lần
+#  parallelism: 5 # Chạy song song
+ backoffLimit: 5 # Giới hạn số lần restart nếu failed
+ activeDeadlineSeconds: 20
+ ttlSecondsAfterFinished: 60
+ template:
+   metadata:
+     name: dncb-job
+   spec:
+     containers:
+     - name: busybox-job
+       image: busybox
+       command: ["/bin/sh","-c"]
+      #  args: ["echo", "Running a job"]
+      #  args: ["echo 'consuming a message'; sleep 5"] # Multiple Single Job
+      #  args: ["echo 'consuming a message'; sleep $(shuf -i 5-10 -n 1)"] # Multiple Parallel Jobs
+       args: ["echo 'Consuming data'; sleep 1; exit 1"] # Job Failure
+     restartPolicy: OnFailure # Never

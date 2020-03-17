@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  aspnetcorekubernetestest:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Kubernetes
+    ports:
+      - "80"

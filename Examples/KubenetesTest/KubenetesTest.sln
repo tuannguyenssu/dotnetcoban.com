@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29827.131
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreKubernetesTest", "AspNetCoreKubernetesTest\AspNetCoreKubernetesTest.csproj", "{D9F9601E-D202-4595-BC3C-5A86E60C08DE}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{880F81EA-69D8-427B-929A-B86443EF5A82}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D9F9601E-D202-4595-BC3C-5A86E60C08DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9F9601E-D202-4595-BC3C-5A86E60C08DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9F9601E-D202-4595-BC3C-5A86E60C08DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9F9601E-D202-4595-BC3C-5A86E60C08DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{880F81EA-69D8-427B-929A-B86443EF5A82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{880F81EA-69D8-427B-929A-B86443EF5A82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{880F81EA-69D8-427B-929A-B86443EF5A82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{880F81EA-69D8-427B-929A-B86443EF5A82}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FB22E8FB-7766-41BE-8518-EA7457BD7DD8}
+	EndGlobalSection
+EndGlobal
