@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MQTTClientTest", "MQTTClien
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MQTTServerTest", "MQTTServerTest\MQTTServerTest.csproj", "{4C4A645D-7EE7-4A97-B8CD-E4CF1C3C5553}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreMqttServerTest", "AspNetCoreMqttServerTest\AspNetCoreMqttServerTest.csproj", "{988472CD-00FA-4D52-AB2B-6C7E856FFCB3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{4C4A645D-7EE7-4A97-B8CD-E4CF1C3C5553}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C4A645D-7EE7-4A97-B8CD-E4CF1C3C5553}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C4A645D-7EE7-4A97-B8CD-E4CF1C3C5553}.Release|Any CPU.Build.0 = Release|Any CPU
+		{988472CD-00FA-4D52-AB2B-6C7E856FFCB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{988472CD-00FA-4D52-AB2B-6C7E856FFCB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{988472CD-00FA-4D52-AB2B-6C7E856FFCB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{988472CD-00FA-4D52-AB2B-6C7E856FFCB3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
