@@ -9,7 +9,7 @@ namespace AspNetCoreMicroservicesTest.Messaging.Tracing
     {
         public void Apply(IPipeBuilder<ConsumeContext> builder)
         {
-            // builder.AddFilter(new OpenTracingConsumeFilter());
+            builder.AddFilter(new OpenTracingConsumeFilter());
         }
 
         public void Apply(IPipeBuilder<PublishContext> builder)

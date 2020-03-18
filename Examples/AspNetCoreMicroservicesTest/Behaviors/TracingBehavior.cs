@@ -5,7 +5,7 @@ using MediatR;
 using OpenTelemetry.Trace;
 using OpenTelemetry.Trace.Configuration;
 
-namespace AspNetCoreMicroservicesTest.Tracing.OpenTelemetry.Behaviors
+namespace AspNetCoreMicroservicesTest.Behaviors
 {
     public class TracingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     {

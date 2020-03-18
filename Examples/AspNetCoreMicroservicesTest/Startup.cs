@@ -2,17 +2,26 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AspNetCoreMicroservicesTest.Behaviors;
 using AspNetCoreMicroservicesTest.CorrelationId;
 using AspNetCoreMicroservicesTest.Messaging;
 using AspNetCoreMicroservicesTest.Shared;
+using AspNetCoreMicroservicesTest.Tracing.Jaeger;
 using AspNetCoreMicroservicesTest.Tracing.OpenTelemetry;
+using Jaeger;
+using Jaeger.Reporters;
+using Jaeger.Senders;
 using MassTransit;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using OpenTracing;
+using OpenTracing.Util;
 
 namespace AspNetCoreMicroservicesTest
 {
@@ -22,10 +31,13 @@ namespace AspNetCoreMicroservicesTest
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services
-                .AddCorrelationId()
-                .AddCustomOpenTelemetry()
-                .AddCustomMassTransit();
+            services.AddCorrelationId();
+            services.AddCustomOpenTelemetry();
+            services.AddJaeger();
+            services.AddCustomMassTransit();
+            services.AddMediatR(typeof(Startup));
+            services.AddScoped(typeof(IPipelineBehavior<,>), typeof(TracingBehavior<,>));
+            services.AddControllers();
 
         }
 
@@ -39,6 +51,8 @@ namespace AspNetCoreMicroservicesTest
 
             app.UseCorrelationId();
 
+            app.UseJaeger();
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
@@ -47,6 +61,8 @@ namespace AspNetCoreMicroservicesTest
                 {
                     await context.Response.WriteAsync("AspNetCore Microservices Test");
                 });
+
+                endpoints.MapControllers();
             });
         }
 

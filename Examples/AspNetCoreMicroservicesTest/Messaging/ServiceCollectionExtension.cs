@@ -1,10 +1,15 @@
-using AspNetCoreMicroservicesTest.IntegrationHandler;
 using AspNetCoreMicroservicesTest.Messaging.CorrelationId;
 using AspNetCoreMicroservicesTest.Messaging.Tracing;
 using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Reflection;
+using AspNetCoreMicroservicesTest.IntegrationEvent;
+using AspNetCoreMicroservicesTest.IntegrationHandler;
+using MassTransit.AspNetCoreIntegration;
+using MassTransit.Context;
+using Microsoft.Extensions.Hosting;
 
 // Ref from https://github.com/yesmarket/MassTransit.OpenTracing
 namespace AspNetCoreMicroservicesTest.Messaging
@@ -24,33 +29,76 @@ namespace AspNetCoreMicroservicesTest.Messaging
 
             services.AddSingleton(rabbitMqOptions);
 
-            services.AddMassTransit(cfg =>
+            services.AddMassTransit(x =>
             {
-                cfg.AddConsumersFromNamespaceContaining<Startup>();
-                cfg.AddRabbitMqBus((provider, rabbitConfig) =>
+                MessageCorrelation.UseCorrelationId<IMessage>(x => x.CorrelationId);
+
+                x.AddConsumers(Assembly.GetExecutingAssembly());
+                //x.AddConsumer<EventCreatedConsumer>();
+
+                x.AddBus(context => Bus.Factory.CreateUsingRabbitMq(cfg =>
                 {
-                    rabbitConfig.Host(new Uri(rabbitMqOptions.Url), "/", hostConfig =>
+                    cfg.Host(new Uri(rabbitMqOptions.Url), "/", hostConfig =>
                     {
                         hostConfig.Username(rabbitMqOptions.UserName);
                         hostConfig.Password(rabbitMqOptions.Password);
                     });
 
-                    rabbitConfig.ReceiveEndpoint("event", x =>
+                    cfg.ReceiveEndpoint("event", ec =>
                     {
-                        x.ConfigureConsumer<EventCreatedConsumer>(provider);
+                        // Configure a single consumer
+                        ec.ConfigureConsumer<EventCreatedConsumer>(context);
                     });
 
-                    rabbitConfig.PropagateOpenTracingContext();
-                    rabbitConfig.PropagateCorrelationIdContext();
-                });
+                    cfg.PropagateOpenTracingContext();
+                    cfg.PropagateCorrelationIdContext();
 
+                }));
             });
+
+            var busControl = services.BuildServiceProvider().GetRequiredService<IBusControl>();
+            busControl.Start();
+
+
+            //services.AddMassTransit(cfg =>
+            //{
+            //    cfg.AddConsumer<EventCreatedConsumer>();
+            //    MessageCorrelation.UseCorrelationId<IMessage>(x => x.CorrelationId);
+            //    cfg.AddConsumersFromNamespaceContaining<ConsumerAnchor>();
+            //    cfg.AddRabbitMqBus((provider, rabbitConfig) =>
+            //    {
+            //        rabbitConfig.Host(new Uri(rabbitMqOptions.Url), "/", hostConfig =>
+            //        {
+            //            hostConfig.Username(rabbitMqOptions.UserName);
+            //            hostConfig.Password(rabbitMqOptions.Password);
+            //        });
+
+            //        rabbitConfig.ReceiveEndpoint("event", x =>
+            //        {
+            //            x.ConfigureConsumer<EventCreatedConsumer>(provider);
+            //        });
+
+            //        //rabbitConfig.PropagateOpenTracingContext();
+            //        //rabbitConfig.PropagateCorrelationIdContext();
+
+            //    });
+
+            //    //cfg.AddInMemoryBus((provider, memoryConfig) =>
+            //    //{
+            //    //    memoryConfig.ReceiveEndpoint("event", x =>
+            //    //    {
+            //    //        x.ConfigureConsumer<EventCreatedConsumer>(provider);
+            //    //    });
+            //    //});
+            //});
+
             return services;
         }
 
         public static void PropagateOpenTracingContext(this IBusFactoryConfigurator value)
         {
-            value.ConfigurePublish(c => c.AddPipeSpecification(new OpenTracingPipeSpecification()));
+            //value.ConfigurePublish(c => c.AddPipeSpecification(new OpenTracingPipeSpecification()));
+            value.ConfigurePublish(configurator => configurator.AddPipeSpecification(new OpenTracingPipeSpecification()));
             value.AddPipeSpecification(new OpenTracingPipeSpecification());
         }
 

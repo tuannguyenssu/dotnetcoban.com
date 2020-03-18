@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AspNetCoreMicroservicesTest.Command;
 using AspNetCoreMicroservicesTest.CorrelationId;
 using AspNetCoreMicroservicesTest.IntegrationEvent;
 using MassTransit;
@@ -13,22 +14,17 @@ namespace AspNetCoreMicroservicesTest.Controllers
     [ApiController]
     public class ClientsController : ControllerBase
     {
-        private readonly IBusControl _bus;
-        private readonly ICorrelationContextAccessor _correlationContextAccessor;
+        private readonly MediatR.IMediator _mediator;
 
-        public ClientsController(IBusControl bus)
+        public ClientsController(MediatR.IMediator mediator)
         {
-            _bus = bus;
+            _mediator = mediator;
         }
 
         [HttpGet]
         public async Task<IActionResult> SendEvent()
         {
-            await Task.CompletedTask;
-            await _bus.Publish<EventCreated>(new
-            {
-                _correlationContextAccessor?.CorrelationContext?.CorrelationId
-            });
+            await _mediator.Send(new MediatCommand());
             return Ok();
         }
     }

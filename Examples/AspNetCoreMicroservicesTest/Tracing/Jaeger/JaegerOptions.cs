@@ -1,4 +1,4 @@
-namespace AspNetCoreMicroservicesTest.Tracing.Jaeger
+﻿namespace AspNetCoreMicroservicesTest.Tracing.Jaeger
 {
     public class JaegerOptions
     {

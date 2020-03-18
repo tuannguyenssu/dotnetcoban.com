@@ -29,14 +29,13 @@ namespace MassTransitTest
         {
             services.AddControllers();
 
+
             // Cấu hình cho MassTransit
-            services.AddScoped<SendOrderConsumer>();
-            services.AddSingleton<IBus>(provider => provider.GetRequiredService<IBusControl>());
-            services.AddSingleton<IHostedService, BusService>();   
+            //services.AddSingleton<IHostedService, BusService>();
 
             services.AddMassTransit(x =>
             {
-                x.AddConsumer<SendOrderConsumer>();
+                x.AddConsumersFromNamespaceContaining<SendOrderConsumer>();
 
                 x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(cfg =>
                 {
@@ -56,6 +55,10 @@ namespace MassTransitTest
                 }));
             });
 
+            var serviceProvider = services.BuildServiceProvider();
+
+            var busControl = serviceProvider.GetRequiredService<IBusControl>();
+            busControl.StartAsync();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
