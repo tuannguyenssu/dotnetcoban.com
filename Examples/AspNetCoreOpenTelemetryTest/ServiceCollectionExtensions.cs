@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using AspNetCoreOpenTelemetryTest.Collector;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OpenTelemetry.Trace;
 using OpenTelemetry.Trace.Configuration;
@@ -36,8 +37,10 @@ namespace AspNetCoreOpenTelemetryTest
                     o.ServiceName = openTelemetryOptions.ServiceName;
                     o.Endpoint = new System.Uri(openTelemetryOptions.ZipkinEndpoint);
                 });
-                builder.AddRequestCollector();
-                builder.AddDependencyCollector();
+                //builder.AddRequestCollector();
+                //builder.AddDependencyCollector();
+
+                builder.AddCollector(t => new CustomCollector(t));
             });
 
             return services;

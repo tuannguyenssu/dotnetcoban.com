@@ -12,8 +12,7 @@ namespace SystemNetHttpClientTest
     {
         static async Task Main(string[] args)
         {
-            var client = new HttpClient();
-            client.BaseAddress = new Uri(Constant.ApiUri);
+            var client = new HttpClient {BaseAddress = new Uri(Constant.ApiUri)};
 
             //var response = await client.GetStringAsync(Constant.UsersResource);
             //var result = JsonSerializer.Deserialize<Data>(response);

@@ -5,21 +5,23 @@ VisualStudioVersion = 16.0.29827.131
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{94DE02FB-C155-431C-A242-779DA888AC8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestSharpClientTest", "RestSharpClientTest\RestSharpClientTest.csproj", "{69964BE5-AB35-476E-A3DC-43BDC04A4DDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestSharpClientTest", "RestSharpClientTest\RestSharpClientTest.csproj", "{69964BE5-AB35-476E-A3DC-43BDC04A4DDB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApiClientTest", "WebApiClientTest\WebApiClientTest.csproj", "{DEE30755-D239-444C-80DA-5198421C9822}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RefitClientTest", "RefitClientTest\RefitClientTest.csproj", "{ED283222-22ED-4650-AC05-9DE8D7D35C1D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RefitClientTest", "RefitClientTest\RefitClientTest.csproj", "{ED283222-22ED-4650-AC05-9DE8D7D35C1D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestClientTest", "RestClientTest\RestClientTest.csproj", "{3B53FF98-B534-4088-A052-62C98EAAEF57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestClientTest", "RestClientTest\RestClientTest.csproj", "{3B53FF98-B534-4088-A052-62C98EAAEF57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestEaseClientTest", "RestEaseClientTest\RestEaseClientTest.csproj", "{AB6E0081-B11E-49AA-AA70-6D9005D14567}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestEaseClientTest", "RestEaseClientTest\RestEaseClientTest.csproj", "{AB6E0081-B11E-49AA-AA70-6D9005D14567}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemNetHttpClientTest", "SystemNetHttpClientTest\SystemNetHttpClientTest.csproj", "{BF2229EB-CCC1-4A4B-95B1-D56A9B0380F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemNetHttpClientTest", "SystemNetHttpClientTest\SystemNetHttpClientTest.csproj", "{BF2229EB-CCC1-4A4B-95B1-D56A9B0380F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebClientWebRequestTest", "WebClientWebRequestTest\WebClientWebRequestTest.csproj", "{79396F14-641D-4E4D-92C0-0B2826FB7883}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebClientWebRequestTest", "WebClientWebRequestTest\WebClientWebRequestTest.csproj", "{79396F14-641D-4E4D-92C0-0B2826FB7883}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceStackClientTest", "ServiceStackClientTest\ServiceStackClientTest.csproj", "{737A1426-DBC3-4CE8-916A-CD6468B41B5B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceStackClientTest", "ServiceStackClientTest\ServiceStackClientTest.csproj", "{737A1426-DBC3-4CE8-916A-CD6468B41B5B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemNetHttpJsonClientTest", "SystemNetHttpJsonClientTest\SystemNetHttpJsonClientTest.csproj", "{DCC9E352-E8DF-4EF5-A651-D58D82DF4938}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{737A1426-DBC3-4CE8-916A-CD6468B41B5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{737A1426-DBC3-4CE8-916A-CD6468B41B5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{737A1426-DBC3-4CE8-916A-CD6468B41B5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCC9E352-E8DF-4EF5-A651-D58D82DF4938}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCC9E352-E8DF-4EF5-A651-D58D82DF4938}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCC9E352-E8DF-4EF5-A651-D58D82DF4938}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCC9E352-E8DF-4EF5-A651-D58D82DF4938}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

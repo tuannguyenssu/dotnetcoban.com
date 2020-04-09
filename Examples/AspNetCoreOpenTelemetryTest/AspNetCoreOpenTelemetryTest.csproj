@@ -1,17 +1,18 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="OpenTelemetry.Collector.AspNetCore" Version="0.2.0-alpha.179" />
-    <PackageReference Include="OpenTelemetry.Collector.Dependencies" Version="0.2.0-alpha.179" />
-    <PackageReference Include="OpenTelemetry.Exporter.Jaeger" Version="0.2.0-alpha.179" />
-    <PackageReference Include="OpenTelemetry.Exporter.Prometheus" Version="0.2.0-alpha.179" />
-    <PackageReference Include="OpenTelemetry.Exporter.Zipkin" Version="0.2.0-alpha.179" />
-    <PackageReference Include="OpenTelemetry.Hosting" Version="0.2.0-alpha.179" />
-    <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="4.7.0" />
+  <PackageReference Include="OpenTelemetry" Version="0.2.0-alpha.179" />
+  <PackageReference Include="OpenTelemetry.Collector.AspNetCore" Version="0.2.0-alpha.179" />
+  <PackageReference Include="OpenTelemetry.Collector.Dependencies" Version="0.2.0-alpha.179" />
+  <PackageReference Include="OpenTelemetry.Exporter.Prometheus" Version="0.2.0-alpha.179" />
+  <PackageReference Include="OpenTelemetry.Hosting" Version="0.2.0-alpha.179" />
+  <PackageReference Include="OpenTelemetry.Exporter.Jaeger" Version="0.2.0-alpha.179" />
+  <PackageReference Include="OpenTelemetry.Exporter.Zipkin" Version="0.2.0-alpha.179" />
+  <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="4.7.0" />
   </ItemGroup>
 
 </Project>
