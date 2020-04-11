@@ -1,10 +1,8 @@
-﻿using IdentityModel;
+﻿using IdentityServer.Customized;
 using IdentityServer4.EntityFramework.DbContexts;
 using IdentityServer4.EntityFramework.Mappers;
-using IdentityServerAspNetIdentity.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
@@ -13,13 +11,13 @@ using Serilog.Sinks.SystemConsole.Themes;
 using System;
 using System.Linq;
 using System.Net;
-using System.Security.Claims;
-using IdentityServer.Customized;
+using Microsoft.EntityFrameworkCore;
 
 namespace IdentityServer
 {
     public class Program
     {
+        public static DatabaseType UseDatabaseType = DatabaseType.InMemory; 
         public static void Main(string[] args)
         {
             try
@@ -67,10 +65,13 @@ namespace IdentityServer
 
         private static void InitializeIdentityServer(IServiceProvider provider)
         {
-            // Uncomment when connecting to the real database
-            //provider.GetRequiredService<ApplicationDbContext>().Database.Migrate();
-            //provider.GetRequiredService<PersistedGrantDbContext>().Database.Migrate();
-            //provider.GetRequiredService<ConfigurationDbContext>().Database.Migrate();
+            if (UseDatabaseType != DatabaseType.InMemory)
+            {
+                provider.GetRequiredService<ApplicationDbContext>().Database.Migrate();
+                provider.GetRequiredService<PersistedGrantDbContext>().Database.Migrate();
+                provider.GetRequiredService<ConfigurationDbContext>().Database.Migrate();
+            }
+
 
             var context = provider.GetRequiredService<ConfigurationDbContext>();
             if (!context.Clients.Any())
