@@ -26,7 +26,7 @@ namespace AspNetCorePrometheusTest
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseMetricServer().UseHttpMetrics();
+            //app.UseMetricServer().UseHttpMetrics();
 
             app.UseRouting();
 
@@ -36,6 +36,7 @@ namespace AspNetCorePrometheusTest
                 {
                     await context.Response.WriteAsync("AspNetCore Prometheus Test");
                 });
+
             });
         }
     }
