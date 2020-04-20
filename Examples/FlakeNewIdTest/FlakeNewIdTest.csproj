@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NEST" Version="7.6.1" />
+    <PackageReference Include="NewId" Version="3.0.2" />
   </ItemGroup>
 
 </Project>

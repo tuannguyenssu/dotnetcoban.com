@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NEST" Version="7.6.1" />
+    <PackageReference Include="Humanizer" Version="2.7.9" />
   </ItemGroup>
 
 </Project>

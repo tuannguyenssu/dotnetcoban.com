@@ -59,9 +59,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreNatsTest", "AspNe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreOpenTelemetryTest", "AspNetCoreOpenTelemetryTest\AspNetCoreOpenTelemetryTest.csproj", "{17AD159B-6A38-48A7-B713-581EDE5037D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreCorrelationIdTest", "AspNetCoreCorrelationIdTest\AspNetCoreCorrelationIdTest.csproj", "{EA84BAA0-13BE-45B6-9FD0-C77733011630}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreCorrelationIdTest", "AspNetCoreCorrelationIdTest\AspNetCoreCorrelationIdTest.csproj", "{EA84BAA0-13BE-45B6-9FD0-C77733011630}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreMicroservicesTest", "AspNetCoreMicroservicesTest\AspNetCoreMicroservicesTest.csproj", "{7F93382A-3809-45A0-A99D-9B59CAC19FCF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreMicroservicesTest", "AspNetCoreMicroservicesTest\AspNetCoreMicroservicesTest.csproj", "{7F93382A-3809-45A0-A99D-9B59CAC19FCF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreProxyKitTest", "AspNetCoreProxyKitTest\AspNetCoreProxyKitTest.csproj", "{E8D1A6E2-83B5-40B4-9082-23E7929CBFF7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreProxyTest", "AspNetCoreProxyTest\AspNetCoreProxyTest.csproj", "{EB50EEBD-AFAB-484B-B502-0AB96C726285}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -189,6 +193,14 @@ Global
 		{7F93382A-3809-45A0-A99D-9B59CAC19FCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F93382A-3809-45A0-A99D-9B59CAC19FCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F93382A-3809-45A0-A99D-9B59CAC19FCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8D1A6E2-83B5-40B4-9082-23E7929CBFF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8D1A6E2-83B5-40B4-9082-23E7929CBFF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8D1A6E2-83B5-40B4-9082-23E7929CBFF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8D1A6E2-83B5-40B4-9082-23E7929CBFF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB50EEBD-AFAB-484B-B502-0AB96C726285}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB50EEBD-AFAB-484B-B502-0AB96C726285}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB50EEBD-AFAB-484B-B502-0AB96C726285}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB50EEBD-AFAB-484B-B502-0AB96C726285}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -21,7 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebClientWebRequestTest", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceStackClientTest", "ServiceStackClientTest\ServiceStackClientTest.csproj", "{737A1426-DBC3-4CE8-916A-CD6468B41B5B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemNetHttpJsonClientTest", "SystemNetHttpJsonClientTest\SystemNetHttpJsonClientTest.csproj", "{DCC9E352-E8DF-4EF5-A651-D58D82DF4938}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemNetHttpJsonClientTest", "SystemNetHttpJsonClientTest\SystemNetHttpJsonClientTest.csproj", "{DCC9E352-E8DF-4EF5-A651-D58D82DF4938}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlurlClientTest", "FlurlClientTest\FlurlClientTest.csproj", "{C9FED2E0-51FD-4300-A27E-BC01673D632C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,10 @@ Global
 		{DCC9E352-E8DF-4EF5-A651-D58D82DF4938}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCC9E352-E8DF-4EF5-A651-D58D82DF4938}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCC9E352-E8DF-4EF5-A651-D58D82DF4938}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9FED2E0-51FD-4300-A27E-BC01673D632C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9FED2E0-51FD-4300-A27E-BC01673D632C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9FED2E0-51FD-4300-A27E-BC01673D632C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9FED2E0-51FD-4300-A27E-BC01673D632C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
