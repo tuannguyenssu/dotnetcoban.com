@@ -59,6 +59,33 @@ namespace ElasticsearchTest
              return result.Documents;
         }
 
+        public async Task<IEnumerable<DeviceLog>> SearchAsync(int currentPage = 1, int pageSize = 10, long customerId = 0, string vehiclePlate = null, DateTime fromDate = default, DateTime toDate = default)
+        {
+            var result = await _client.SearchAsync<DeviceLog>(s => s
+                .Index(_indexName)
+                .From((currentPage - 1) * pageSize)
+                .Size(pageSize)
+                .Query(q => q
+                    .Bool(b => b
+                        .Filter(bf =>
+                            {
+                                if (customerId <= 0) return bf.MatchAll();
+                                var customerQuery = bf.Term(t => t.Field(field => field.CustomerId).Value(customerId));
+                                if (vehiclePlate == null) return customerQuery;
+                                var vehiclePlateQuery = bf.Term(t => t.Field(field => field.VehiclePlate).Value(vehiclePlate));
+                                if (fromDate == default) return customerQuery && vehiclePlateQuery;
+                                var dateRangeQuery = bf.DateRange(r => r.Field(field => field.CreatedTime).GreaterThanOrEquals(fromDate));
+                                if (toDate == default) return customerQuery && vehiclePlateQuery && dateRangeQuery;
+                                dateRangeQuery = bf.DateRange(r => r.Field(field => field.CreatedTime).GreaterThanOrEquals(fromDate).LessThanOrEquals(toDate));
+                                return customerQuery && vehiclePlateQuery && dateRangeQuery;
+                            }
+                        )
+                    ))
+            );
+
+            return result.Documents;
+        }
+
         public async Task<bool> DeleteAllAsync()
         {
             var response = await _client.DeleteByQueryAsync<DeviceLog>(s => s.Index(_indexName).MatchAll());

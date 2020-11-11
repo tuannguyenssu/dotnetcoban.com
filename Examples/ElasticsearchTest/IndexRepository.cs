@@ -82,7 +82,6 @@ namespace ElasticsearchTest
                 var response = await _client.Indices.DeleteAsync(indexName);
                 return response.IsValid;
             }
-
             return true;
         }
 

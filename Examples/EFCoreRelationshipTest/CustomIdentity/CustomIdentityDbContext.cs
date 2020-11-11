@@ -69,8 +69,8 @@ namespace EFCoreRelationshipTest.CustomIdentity
             builder.Entity<CustomIdentityUser>(b =>
             {
                 b.HasKey(u => u.Id);
-                b.HasIndex(u => u.NormalizedUserName).HasName("UserNameIndex").IsUnique();
-                b.HasIndex(u => u.NormalizedEmail).HasName("EmailIndex");
+                b.HasIndex(u => u.NormalizedUserName).HasDatabaseName("UserNameIndex").IsUnique();
+                b.HasIndex(u => u.NormalizedEmail).HasDatabaseName("EmailIndex");
                 b.ToTable("Users");
                 b.Property(u => u.ConcurrencyStamp).IsConcurrencyToken();
 
@@ -111,7 +111,7 @@ namespace EFCoreRelationshipTest.CustomIdentity
             builder.Entity<CustomIdentityRole>(b =>
             {
                 b.HasKey(r => r.Id);
-                b.HasIndex(r => r.NormalizedName).HasName("RoleNameIndex");
+                b.HasIndex(r => r.NormalizedName).HasDatabaseName("RoleNameIndex");
                 b.ToTable("Roles");
                 b.Property(r => r.ConcurrencyStamp).IsConcurrencyToken();
 

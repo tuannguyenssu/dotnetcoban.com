@@ -1,4 +1,5 @@
 using System;
+using GraphQL;
 using GraphQL.Types;
 using GraphQLTest.Models;
 using GraphQLTest.Services;
@@ -35,8 +36,7 @@ namespace GraphQLTest.GraphQL
                 resolve: async context =>
                 {
                     var orderId = context.GetArgument<string>("orderId");
-                    return await context.TryAsyncResolve(
-                        async c => await orderService.StartOrderAsync(orderId));
+                    return await orderService.StartOrderAsync(orderId);
                 }
             );
 
@@ -46,8 +46,7 @@ namespace GraphQLTest.GraphQL
                 resolve: async context =>
                 {
                     var orderId = context.GetArgument<string>("orderId");
-                    return await context.TryAsyncResolve(
-                        async c => await orderService.CompleteOrderAsync(orderId));
+                    return await orderService.CompleteOrderAsync(orderId);
                 }
             );
 
@@ -57,8 +56,7 @@ namespace GraphQLTest.GraphQL
                 resolve: async context =>
                 {
                     var orderId = context.GetArgument<string>("orderId");
-                    return await context.TryAsyncResolve(
-                        async c => await orderService.CancelOrderAsync(orderId));
+                    return await orderService.CancelOrderAsync(orderId);
                 }
             );
 
@@ -68,8 +66,7 @@ namespace GraphQLTest.GraphQL
                 resolve: async context =>
                 {
                     var orderId = context.GetArgument<string>("orderId");
-                    return await context.TryAsyncResolve(
-                        async c => await orderService.CloseOrderAsync(orderId));
+                    return await orderService.CloseOrderAsync(orderId);
                 }
             );            
         }

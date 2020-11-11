@@ -5,7 +5,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
-using ValidationException = CQRSTest.Application.Exceptions.ValidationException;
 
 namespace CQRSTest.Application.Behaviors
 {
@@ -21,7 +20,7 @@ namespace CQRSTest.Application.Behaviors
 
         public Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
         {
-            var context = new ValidationContext(request);
+            var context = new ValidationContext<TRequest>(request);
 
             var failures = _validators
                 .Select(v => v.Validate(context))

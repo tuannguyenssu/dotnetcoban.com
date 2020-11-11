@@ -23,7 +23,7 @@ I just wanted to let you know that Monica and I were going to go play some paint
 -- Joey"
             };
 
-            using (var client = new SmtpClient())
+            using (var client = new MailKit.Net.Smtp.SmtpClient())
             {
                 client.Connect("smtp.friends.com", 587, false);
 

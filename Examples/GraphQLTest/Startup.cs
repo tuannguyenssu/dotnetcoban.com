@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
+using GraphQL.Server.Ui.Altair;
 
 namespace GraphQLTest
 {
@@ -47,11 +48,19 @@ namespace GraphQLTest
             services.AddGraphQL(options =>
                 {
                     options.EnableMetrics = true;
-                    options.ExposeExceptions = true;
                     options.UnhandledExceptionDelegate = ctx =>
                     {
                         Console.WriteLine("error: " + ctx.OriginalException.Message);
                     };
+                })
+                .AddSystemTextJson()
+                .AddErrorInfoProvider(opt =>
+                {
+                    opt.ExposeCode = true;
+                    opt.ExposeCodes = true;
+                    opt.ExposeData = true;
+                    opt.ExposeExceptionStackTrace = true;
+                    opt.ExposeExtensions = true;
                 })
                 .AddDataLoader()
                 .AddGraphTypes(typeof(GraphTestSchema), ServiceLifetime.Scoped);
@@ -74,6 +83,24 @@ namespace GraphQLTest
             app.UseGraphQLPlayground(new GraphQLPlaygroundOptions
             {
                 Path = "/ui/playground",
+                BetaUpdates = true,
+                RequestCredentials = RequestCredentials.Omit,
+                HideTracingResponse = false,
+
+                EditorCursorShape = EditorCursorShape.Line,
+                EditorTheme = EditorTheme.Light,
+                EditorFontSize = 14,
+                EditorReuseHeaders = true,
+                EditorFontFamily = "Consolas",
+
+                PrettierPrintWidth = 80,
+                PrettierTabWidth = 2,
+                PrettierUseTabs = true,
+
+                SchemaDisableComments = false,
+                SchemaPollingEnabled = true,
+                SchemaPollingEndpointFilter = "*localhost*",
+                SchemaPollingInterval = 5000,
                 PlaygroundSettings = new Dictionary<string, object>
                 {
                     ["editor.theme"] = "light",
@@ -93,6 +120,12 @@ namespace GraphQLTest
             {
                 Path = "/ui/voyager",
                 GraphQLEndPoint = "/graphql",
+            });
+
+            app.UseGraphQLAltair(new GraphQLAltairOptions
+            {
+                Path = "/ui/altair",
+                GraphQLEndPoint = "/graphql"
             });
 
             app.UseRouting();

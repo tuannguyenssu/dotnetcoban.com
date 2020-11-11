@@ -1,12 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
 using MassTransit;
+using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
 
 namespace MassTransitTest
-{  
+{
     public class SendOrderConsumer : IConsumer<Order>
     {
         private readonly ILogger<SendOrderConsumer> _logger;

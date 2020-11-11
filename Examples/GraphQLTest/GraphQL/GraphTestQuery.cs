@@ -1,3 +1,4 @@
+using GraphQL;
 using GraphQL.Types;
 using GraphQLTest.Services;
 
@@ -17,12 +18,11 @@ namespace GraphQLTest.GraphQL
             FieldAsync<OrderType>(
             "orderById",
             arguments: new QueryArguments(new QueryArgument<NonNullGraphType<StringGraphType>> {Name="orderId"}),
-            resolve: async context => {
-                return await context.TryAsyncResolve(
-                    async c=> await orderService.GetOrderByIdAsync(c.GetArgument<string>("orderId"))
-                );
-            }
-            );
+            resolve: async context =>
+            {
+                var orderId = context.GetArgument<string>("orderId");
+                return await orderService.GetOrderByIdAsync(orderId);
+            });
         }
     }
 }

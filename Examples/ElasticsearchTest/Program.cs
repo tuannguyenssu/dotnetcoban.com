@@ -62,7 +62,15 @@ namespace ElasticsearchTest
 
             // Tim kiem du lieu
             //var logs = await repository.ListAllAsync();
-            var logs = await repository.SearchAsync("8888");
+            //var logs = await repository.SearchAsync();
+            //var logs = await repository.SearchAsync(1, 20);
+            //var logs = await repository.SearchAsync(1, 20, 8888);
+            //var logs = await repository.SearchAsync(1, 20, 8888, "29A12345");
+            var logs = await repository.SearchAsync(1, 20, 8888, "29A12345", DateTime.Parse("2020-04-21"));
+
+            //var logs = await repository.SearchAsync(1, 20, 8888, "29A12345", DateTime.Parse("2020-04-21"), DateTime.Now);
+
+            //var logs = await repository.SearchAsync( DateTime.Parse("2020-04-22"), DateTime.Now);
 
             var json = JsonSerializer.Serialize(logs, new JsonSerializerOptions() {WriteIndented = true});
 
