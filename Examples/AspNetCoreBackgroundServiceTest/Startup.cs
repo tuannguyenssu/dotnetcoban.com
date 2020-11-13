@@ -11,8 +11,8 @@ namespace AspNetCoreBackgroundServiceTest
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCronJob<CronServiceA>(@"* * * * * *");
-            services.AddCronJob<CronServiceB>(@"*/5 * * * * *");
+            services.AddSingleton<MessageQueueProcessor>();
+            services.AddCronJob();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
