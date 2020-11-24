@@ -49,9 +49,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlakeNewIdTest", "FlakeNewI
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkiaSharpTest", "SkiaSharpTest\SkiaSharpTest.csproj", "{D867A4A3-9104-458A-8911-9BB412B9A298}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPNetwork2Test", "IPNetwork2Test\IPNetwork2Test.csproj", "{D3E3654D-D63D-426A-BCAA-5E80F9EF07C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IPNetwork2Test", "IPNetwork2Test\IPNetwork2Test.csproj", "{D3E3654D-D63D-426A-BCAA-5E80F9EF07C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DinkToPdfTest", "DinkToPdfTest\DinkToPdfTest.csproj", "{E60C1EC4-399D-45FF-9A62-26023D2A43D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DinkToPdfTest", "DinkToPdfTest\DinkToPdfTest.csproj", "{E60C1EC4-399D-45FF-9A62-26023D2A43D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceStackRedisTest", "ServiceStackRedisTest\ServiceStackRedisTest.csproj", "{552FC6D2-9566-4D41-896F-4F5CF3963053}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -159,6 +161,10 @@ Global
 		{E60C1EC4-399D-45FF-9A62-26023D2A43D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E60C1EC4-399D-45FF-9A62-26023D2A43D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E60C1EC4-399D-45FF-9A62-26023D2A43D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{552FC6D2-9566-4D41-896F-4F5CF3963053}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{552FC6D2-9566-4D41-896F-4F5CF3963053}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{552FC6D2-9566-4D41-896F-4F5CF3963053}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{552FC6D2-9566-4D41-896F-4F5CF3963053}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
