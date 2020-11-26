@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ServiceStackRedisTest
+namespace Common
 {
     public class ImageData
     {

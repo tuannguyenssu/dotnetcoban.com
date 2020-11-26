@@ -1,26 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
-using ServiceStack.Redis;
+using Common;
+using StackExchange.Redis;
 
-namespace ServiceStackRedisTest
+namespace StackExchangeRedisTest
 {
     class Program
     {
         static async Task Main(string[] args)
         {
-            var redisConnectionString = $"redis://192.168.1.57:6379?db=15";
+            var redisConnectionString = $"192.168.1.57:6379";
 
-            var redisClientManager = new PooledRedisClientManager(redisConnectionString);
-
-            var redisClient = await redisClientManager.GetClientAsync();
             var options = new ImageDataDbOptions()
             {
-                DbName = "Abc"
+                DbName = nameof(ImageDataDb)
             };
 
-            var db = new ImageDataDb(redisClient, options);
+            var redis = await ConnectionMultiplexer.ConnectAsync(redisConnectionString);
+
+            var database = redis.GetDatabase(14);
+            var server = redis.GetServer(redis.GetEndPoints().First());
+
+            var db = new ImageDataDb(options, server, database);
             var data = new List<ImageData>()
             {
                 new ImageData()
@@ -31,11 +35,11 @@ namespace ServiceStackRedisTest
                 }
             };
 
-            //await db.SaveAllAsync(data);
+            await db.SaveAllAsync(data);
 
             var items = await db.GetAllAsync();
 
-            Console.WriteLine(items.Count);
+            Console.WriteLine(JsonSerializer.Serialize(items));
             Console.WriteLine("Finished!");
             Console.ReadKey();
         }

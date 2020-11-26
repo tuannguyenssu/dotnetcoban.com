@@ -9,4 +9,8 @@
     <PackageReference Include="ServiceStack.Redis.Core" Version="5.10.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj" />
+  </ItemGroup>
+
 </Project>
