@@ -23,8 +23,8 @@ namespace DnsClientTest
             //    .FirstOrDefault();
             //Console.WriteLine(JsonSerializer.Serialize(result));
 
-            var record = client
-                .Query("dotnetcoban.com", QueryType.A)
+            var record = (await client
+                    .QueryAsync("dotnetcoban.com", QueryType.A))
                 .Answers.OfRecordType(ResourceRecordType.HINFO)
                 .FirstOrDefault() as HInfoRecord;
             if (record != null)

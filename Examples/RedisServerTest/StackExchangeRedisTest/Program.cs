@@ -12,6 +12,14 @@ namespace StackExchangeRedisTest
     {
         static async Task Main(string[] args)
         {
+
+            await TestDbAsync();
+            await TestPubSubAsync();
+            Console.ReadKey();
+        }
+
+        public static async Task TestDbAsync()
+        {
             var redisConnectionString = $"192.168.1.57:6379";
 
             var options = new ImageDataDbOptions()
@@ -40,8 +48,22 @@ namespace StackExchangeRedisTest
             var items = await db.GetAllAsync();
 
             Console.WriteLine(JsonSerializer.Serialize(items));
-            Console.WriteLine("Finished!");
-            Console.ReadKey();
+        }
+
+        private static async Task TestPubSubAsync()
+        {
+            var redisConnectionString = $"192.168.1.57:6379";
+
+            var redis = await ConnectionMultiplexer.ConnectAsync(redisConnectionString);
+
+            var redisPubSub = redis.GetSubscriber();
+
+            redisPubSub.Subscribe("Test").OnMessage(message =>
+            {
+                Console.WriteLine(message);
+            });
+
+            redisPubSub.Publish("Test", "Abc");
         }
     }
 }

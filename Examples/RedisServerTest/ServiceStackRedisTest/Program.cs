@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.Json;
+using System.Threading;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 using Common;
 using ServiceStack.Redis;
@@ -10,6 +12,13 @@ namespace ServiceStackRedisTest
     class Program
     {
         static async Task Main(string[] args)
+        {
+            await TestDbAsync();
+            await TestPubSubAsync();
+            Console.ReadKey();
+        }
+
+        public static async Task TestDbAsync()
         {
             var redisConnectionString = $"redis://192.168.1.57:6379?db=14";
 
@@ -36,8 +45,26 @@ namespace ServiceStackRedisTest
             var items = await db.GetAllAsync();
 
             Console.WriteLine(JsonSerializer.Serialize(items));
-            Console.WriteLine("Finished!");
-            Console.ReadKey();
+        }
+
+        private static async Task TestPubSubAsync()
+        {
+            var redisConnectionString = $"redis://192.168.1.57:6379?db=14";
+
+            var redisClientManager = new PooledRedisClientManager(redisConnectionString);
+
+            var redisPubSub = new RedisPubSubServer(redisClientManager, "Test");
+            redisPubSub.OnMessage += (channel, message) =>
+            {
+                Console.WriteLine($"{channel} {message}");
+            };
+            redisPubSub.Start();
+            var redisClient = await redisClientManager.GetClientAsync();
+            for (int i = 0; i < 1000; i++)
+            {
+                var result = await redisClient.PublishMessageAsync("Test", "ChannelTest");
+                Console.WriteLine(result);
+            }
         }
     }
 }
