@@ -57,7 +57,7 @@ namespace Publisher
             var bytes = JsonSerializer.SerializeToUtf8Bytes(vehicleData);
             //_channel.BasicPublish(Shared.Constants.DirectExchangeName, Shared.Constants.DirectExchangeRoutingKey, null, bytes);
             _channel.BasicPublish(Shared.Constants.TopicExchangeName, Shared.Constants.TopicExchangeRoutingKey, null, bytes);
-            Console.WriteLine("Data: " + JsonSerializer.Serialize(vehicleData));
+            Console.WriteLine($"{DateTime.Now} {JsonSerializer.Serialize(vehicleData)}");
         }
     }
 }

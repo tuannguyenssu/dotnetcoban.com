@@ -59,13 +59,13 @@ namespace Subscriber
 
         private static Task DataReceived(object sender, BasicDeliverEventArgs args)
         {
-            Console.WriteLine("Exchange: " + args.Exchange);
-            Console.WriteLine("RoutingKey: " + args.RoutingKey);
+            //Console.WriteLine("Exchange: " + args.Exchange);
+            //Console.WriteLine("RoutingKey: " + args.RoutingKey);
 
-            Console.WriteLine("Delivery: " + args.DeliveryTag);
+            //Console.WriteLine("Delivery: " + args.DeliveryTag);
 
             var data = JsonSerializer.Deserialize<VehicleData>(args.Body.Span);
-            Console.WriteLine("Data: " + JsonSerializer.Serialize(data));
+            Console.WriteLine($"{DateTime.Now} {JsonSerializer.Serialize(data)}");
             return Task.CompletedTask;
         }
     }
