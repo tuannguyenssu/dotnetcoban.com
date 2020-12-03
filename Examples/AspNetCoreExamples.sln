@@ -67,7 +67,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreProxyKitTest", "A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreProxyTest", "AspNetCoreProxyTest\AspNetCoreProxyTest.csproj", "{EB50EEBD-AFAB-484B-B502-0AB96C726285}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreBackgroundServiceTest", "AspNetCoreBackgroundServiceTest\AspNetCoreBackgroundServiceTest.csproj", "{6CC08FCC-4495-445A-9365-C245752D1508}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreBackgroundServiceTest", "AspNetCoreBackgroundServiceTest\AspNetCoreBackgroundServiceTest.csproj", "{6CC08FCC-4495-445A-9365-C245752D1508}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreQuartzTest", "AspNetCoreQuartzTest\AspNetCoreQuartzTest.csproj", "{8326FA1A-4DB5-46F5-8EB7-E0FE268FE4F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -207,6 +209,10 @@ Global
 		{6CC08FCC-4495-445A-9365-C245752D1508}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CC08FCC-4495-445A-9365-C245752D1508}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CC08FCC-4495-445A-9365-C245752D1508}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8326FA1A-4DB5-46F5-8EB7-E0FE268FE4F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8326FA1A-4DB5-46F5-8EB7-E0FE268FE4F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8326FA1A-4DB5-46F5-8EB7-E0FE268FE4F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8326FA1A-4DB5-46F5-8EB7-E0FE268FE4F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
