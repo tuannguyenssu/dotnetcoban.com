@@ -1,11 +1,10 @@
-﻿using System;
-using MagicOnion;
+﻿using MagicOnion;
 using MagicOnion.Server;
 using MagicOnionGrpc.Contract;
 
 namespace MagicOnionGrpc.Server.GrpcServices
 {
-    public class GrpcService : ServiceBase<IGrpcService>, IGrpcService
+    public class SampleGrpcService : ServiceBase<ISampleGrpcService>, ISampleGrpcService
     {
         public UnaryResult<PingResponse> PingAsync(PingRequest request)
         {
@@ -13,12 +12,6 @@ namespace MagicOnionGrpc.Server.GrpcServices
             {
                 Pong = request.Ping
             });
-        }
-
-        public async UnaryResult<int> SumAsync(int x, int y)
-        {
-            Console.WriteLine($"Received:{x}, {y}");
-            return x + y;
         }
     }
 }

@@ -1,14 +1,11 @@
-﻿using System;
-using MagicOnion;
+﻿using MagicOnion;
 using MessagePack;
 
 namespace MagicOnionGrpc.Contract
 {
-    public interface IGrpcService : IService<IGrpcService>
+    public interface ISampleGrpcService : IService<ISampleGrpcService>
     {
         UnaryResult<PingResponse> PingAsync(PingRequest request);
-
-        UnaryResult<int> SumAsync(int x, int y);
     }
 
     [MessagePackObject]
