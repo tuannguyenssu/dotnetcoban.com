@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30709.64
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImageClassificationTest", "ImageClassificationTest\ImageClassificationTest.csproj", "{4D066D34-E319-4263-9D32-B22347695E6C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceRecognitionTest", "FaceRecognitionTest\FaceRecognitionTest.csproj", "{917BF4BF-7B84-4CA9-9F06-97D730C9B775}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4D066D34-E319-4263-9D32-B22347695E6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D066D34-E319-4263-9D32-B22347695E6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D066D34-E319-4263-9D32-B22347695E6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D066D34-E319-4263-9D32-B22347695E6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{917BF4BF-7B84-4CA9-9F06-97D730C9B775}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{917BF4BF-7B84-4CA9-9F06-97D730C9B775}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{917BF4BF-7B84-4CA9-9F06-97D730C9B775}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{917BF4BF-7B84-4CA9-9F06-97D730C9B775}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E0AE86BE-4731-494E-9A00-E7F4967CAF80}
+	EndGlobalSection
+EndGlobal
