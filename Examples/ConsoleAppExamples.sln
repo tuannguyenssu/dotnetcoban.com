@@ -55,7 +55,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoreLinqTest", "MoreLinqTes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CastleDynamicProxyTest", "CastleDynamicProxyTest\CastleDynamicProxyTest.csproj", "{4AF1D1BD-BE86-4E5C-B0A3-8CB03AA0D4E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngleSharpTest", "AngleSharpTest\AngleSharpTest.csproj", "{08F0CD41-8C9F-4E8C-BF7A-EFFF1B675D1E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AngleSharpTest", "AngleSharpTest\AngleSharpTest.csproj", "{08F0CD41-8C9F-4E8C-BF7A-EFFF1B675D1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RssReaderTest", "RssReaderTest\RssReaderTest.csproj", "{3625DB74-E3E4-4098-8E31-38787E8162EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -171,6 +173,10 @@ Global
 		{08F0CD41-8C9F-4E8C-BF7A-EFFF1B675D1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08F0CD41-8C9F-4E8C-BF7A-EFFF1B675D1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08F0CD41-8C9F-4E8C-BF7A-EFFF1B675D1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3625DB74-E3E4-4098-8E31-38787E8162EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3625DB74-E3E4-4098-8E31-38787E8162EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3625DB74-E3E4-4098-8E31-38787E8162EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3625DB74-E3E4-4098-8E31-38787E8162EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
