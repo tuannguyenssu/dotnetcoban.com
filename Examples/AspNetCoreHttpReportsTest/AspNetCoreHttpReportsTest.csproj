@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HttpReports" Version="2.5.6" />
+    <PackageReference Include="HttpReports.Dashboard" Version="2.5.6" />
+    <PackageReference Include="HttpReports.MySQL" Version="2.5.6" />
+    <PackageReference Include="HttpReports.Transport.Http" Version="2.5.6" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FubarDev.FtpServer" Version="3.1.1" />
+    <PackageReference Include="FubarDev.FtpServer.FileSystem.DotNet" Version="3.1.1" />
+    <PackageReference Include="FubarDev.FtpServer.FileSystem.GoogleDrive" Version="3.1.1" />
+    <PackageReference Include="FubarDev.FtpServer.FileSystem.InMemory" Version="3.1.1" />
+  </ItemGroup>
+
+</Project>

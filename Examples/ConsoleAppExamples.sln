@@ -57,7 +57,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CastleDynamicProxyTest", "C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AngleSharpTest", "AngleSharpTest\AngleSharpTest.csproj", "{08F0CD41-8C9F-4E8C-BF7A-EFFF1B675D1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RssReaderTest", "RssReaderTest\RssReaderTest.csproj", "{3625DB74-E3E4-4098-8E31-38787E8162EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RssReaderTest", "RssReaderTest\RssReaderTest.csproj", "{3625DB74-E3E4-4098-8E31-38787E8162EC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HtmlAgilityPackTest", "HtmlAgilityPackTest\HtmlAgilityPackTest.csproj", "{74094B6A-D36E-4B42-AE95-8AEA548FA7C7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThreadingChannelTest", "ThreadingChannelTest\ThreadingChannelTest.csproj", "{E63CD572-BAAA-4365-8228-E3AB96778CA1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerformanceCounterTest", "PerformanceCounterTest\PerformanceCounterTest.csproj", "{13264A9A-0C0C-46EB-984B-9290E371E298}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -177,6 +183,18 @@ Global
 		{3625DB74-E3E4-4098-8E31-38787E8162EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3625DB74-E3E4-4098-8E31-38787E8162EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3625DB74-E3E4-4098-8E31-38787E8162EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74094B6A-D36E-4B42-AE95-8AEA548FA7C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74094B6A-D36E-4B42-AE95-8AEA548FA7C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74094B6A-D36E-4B42-AE95-8AEA548FA7C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74094B6A-D36E-4B42-AE95-8AEA548FA7C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E63CD572-BAAA-4365-8228-E3AB96778CA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E63CD572-BAAA-4365-8228-E3AB96778CA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E63CD572-BAAA-4365-8228-E3AB96778CA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E63CD572-BAAA-4365-8228-E3AB96778CA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13264A9A-0C0C-46EB-984B-9290E371E298}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13264A9A-0C0C-46EB-984B-9290E371E298}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13264A9A-0C0C-46EB-984B-9290E371E298}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13264A9A-0C0C-46EB-984B-9290E371E298}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
