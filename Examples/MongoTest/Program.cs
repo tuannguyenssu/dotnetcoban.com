@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace MongoTest
@@ -28,9 +29,19 @@ namespace MongoTest
                 CreatedTime = DateTime.Now
             };
 
-            await context.GetStudents().InsertOneAsync(student);
+            var id = "60f69c3d88c7213cf12e5bd6";
+            var teacher = new TeacherDao()
+            {
+                TeacherId = ObjectId.Parse(id).ToString(),
+                Name = "Tuan Nguyen 1",
+                CreatedTime = DateTime.Now
+            };
 
-            var items = await context.GetStudents().Find(Builders<StudentDao>.Filter.Empty).ToListAsync();
+            //await context.GetStudents().InsertOneAsync(student);
+            await context.GetTeachers().InsertOneAsync(teacher);
+
+            //var items = await context.GetStudents().Find(Builders<StudentDao>.Filter.Empty).ToListAsync();
+            var items = await context.GetTeachers().Find(Builders<TeacherDao>.Filter.Eq(x => x.TeacherId, id)).ToListAsync();
 
         }
     }

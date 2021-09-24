@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
-using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson.Serialization.Conventions;
 using MongoDB.Bson.Serialization.IdGenerators;
 using MongoDB.Bson.Serialization.Serializers;
@@ -30,7 +29,6 @@ namespace MongoTest
         //[BsonRepresentation(BsonType.ObjectId)]
         //[BsonIgnoreIfDefault]
         public string Id { get; set; }
-        public string StudentId { get; set; }
         public string TeacherId { get; set; }
         public string Name { get; set; }
         public List<Tag> Tags { get; set; } = new List<Tag>();
@@ -56,12 +54,17 @@ namespace MongoTest
             BsonSerializer.RegisterIdGenerator(typeof(Guid), AscendingGuidGenerator.Instance);
             //BsonSerializer.RegisterSerializer(new EnumSerializer<Tag>(BsonType.String)); //Lưu enum dưới dạng string
 
+            BsonClassMap.RegisterClassMap<TeacherDao>(map =>
+            {
+                map.AutoMap();
+                map.MapIdMember(x => x.TeacherId).SetIdGenerator(StringObjectIdGenerator.Instance).SetSerializer(new StringSerializer(BsonType.ObjectId));
+                map.MapMember(x => x.Name).SetDefaultValue(string.Empty);
+            });
+
             BsonClassMap.RegisterClassMap<StudentDao>(map =>
             {
                 map.AutoMap();
-                //map.SetIdMember(map.GetMemberMap(x => x.StudentId));
                 //map.MapIdMember(x => x.StudentId).SetIdGenerator(StringObjectIdGenerator.Instance);
-                map.MapProperty(c => c.StudentId).SetIdGenerator(StringObjectIdGenerator.Instance).SetSerializer(new StringSerializer(BsonType.ObjectId));
                 map.MapMember(x => x.Name).SetDefaultValue(string.Empty);
             });
         }
@@ -76,6 +79,7 @@ namespace MongoTest
     public static class CollectionNames
     {
         public static string Student = "Student";
+        public static string Teacher = "Teacher";
     }
 
     public class MongoDbContext
@@ -92,6 +96,11 @@ namespace MongoTest
         public IMongoCollection<StudentDao> GetStudents()
         {
             return _database.GetCollection<StudentDao>(CollectionNames.Student);
+        }
+
+        public IMongoCollection<TeacherDao> GetTeachers()
+        {
+            return _database.GetCollection<TeacherDao>(CollectionNames.Teacher);
         }
     }
 }
